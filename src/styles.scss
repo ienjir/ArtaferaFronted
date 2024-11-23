@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
---Main: #35AFF3;
---Text: #EAEAEA;
---Background: #1F228;
+  --Main: #85A1C5;
+  --Text: #EAEAEA;
+  --Background: #1A1A1A;
+  --AccentMain: #85A1C5;
+  --Accent2: #DC58E7;
+  --Accent3: #1F93B4;
 }
 
 body, html {
@@ -11,6 +14,7 @@ body, html {
 }
 
 p {
+  color: var(--Text);
   font-family: "Raleway", sans-serif;
   font-size: 24px;
   font-style: normal;
@@ -20,13 +24,10 @@ p {
 
 h1 {
   color: var(--Main);
-  font-family: "Raleway", sans-serif;
-  font-size: 64px;
+  font-family: Raleway, sans-serif;
+  font-size: 48px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   line-height: normal;
 }
 
-h2 {
-
-}
