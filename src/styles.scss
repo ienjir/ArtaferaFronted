@@ -11,6 +11,8 @@
 
 body, html {
   background-color: var(--Background);
+  margin: 0;
+  padding: 0;
 }
 
 p {
@@ -25,9 +27,18 @@ p {
 h1 {
   color: var(--Main);
   font-family: Raleway, sans-serif;
-  font-size: 48px;
+  font-size: 3rem;
   font-style: normal;
   font-weight: 600;
+  line-height: normal;
+}
+
+h2 {
+  font-family: Raleway, sans-serif;
+  color: var(--Main);
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 400;
   line-height: normal;
 }
 

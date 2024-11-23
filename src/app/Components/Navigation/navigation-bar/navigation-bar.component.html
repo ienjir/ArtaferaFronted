@@ -1,57 +1,37 @@
 <nav>
-  <ul class="mainbar">
-    <li class="NoPoint">
+  <ul class="horizontalNavigation">
+    <li class="logoListItem">
       <a href="/home">
-        <div class="LogoDiv">
-          <img class="LogoImg" ngSrc="/assets/images/LogoLongTransparent.png" fill alt="HomepageLogo">
+        <div class="logoDiv">
+          <img class="logoImg" ngSrc="/assets/images/Logo_Light_Big.png" alt="HomepageLogo" height="687" width="2150">
         </div>
       </a>
     </li>
-    <li class="mainbarLi NoPoint">
-      <a href="/home">Home</a>
+    <li class="mainBarLi NoPoint">
+      <a href="/">
+        <h2>{{ 'Home' | transloco }}</h2>
+      </a>
     </li>
-    <li class="mainbarLi NoPoint">
-      <a href="/aboutme">About me</a>
+    <li class="mainBarLi NoPoint">
+      <a href="/aboutme">
+        <h2>{{ 'AboutMe' | transloco }}</h2>
+      </a>
     </li>
-    <li class="mainbarLi NoPoint">
-      <a href="/projects">Projects</a>
+    <li class="mainBarLi NoPoint">
+      <a href="/projects">
+        <h2>{{ 'Projects' | transloco }}</h2>
+      </a>
     </li>
-    <li class="mainbarLi NoPoint">
-      <a href="/console">Console</a>
+    <li class="rightAlignedDiv">
+      <div>
+        <a href="/contact">
+          <h2>{{ 'Contact' | transloco }}</h2>
+        </a>
+      </div>
     </li>
-    <li (click)="toogleSidebar()" class="menuButton NoPoint">
-      <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="40" height="4" rx="2" fill="#12F7D6"/>
-        <rect y="14" width="40" height="4" rx="2" fill="#12F7D6"/>
-        <rect y="28" width="40" height="4" rx="2" fill="#12F7D6"/>
-      </svg>
-    </li>
-  </ul>
-  <ul class="sidebar" [style.display]="openSidebar ? 'flex' : 'none'">
-    <li (click)="toogleSidebar()" class="menuButton NoPoint">
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g clip-path="url(#clip0_126_315)">
-          <path d="M2 2L38 38" stroke="#12F7D6" stroke-width="3" stroke-linecap="round"/>
-          <path d="M2 38L38 2" stroke="#12F7D6" stroke-width="3" stroke-linecap="round"/>
-        </g>
-        <defs>c
-          <clipPath id="clip0_126_315">
-            <rect width="40" height="40" fill="white"/>
-          </clipPath>
-        </defs>
-      </svg>
-    </li>
-    <li class="NoPoint">
-      <a href="/home">Home</a>
-    </li>
-    <li class="NoPoint">
-      <a href="/aboutme">About me</a>
-    </li>
-    <li class="NoPoint">
-      <a href="/projects">Projects</a>
-    </li>
-    <li class="NoPoint">
-      <a href="/console">Console</a>
+
+    <li (click)="toogleSidebar()" class="menuButton">
+      <object data="/assets/svg/Burger.svg" type="image/svg+xml"></object>
     </li>
   </ul>
 </nav>
