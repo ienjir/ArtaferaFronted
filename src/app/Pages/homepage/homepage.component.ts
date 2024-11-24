@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CarouselModule } from 'primeng/carousel';
 import {TranslocoPipe} from "@jsverse/transloco";
 import {NavigationBar} from "../../Components/Navigation/navigation-bar/navigation-bar.component";
+import {ImageCarousel} from "../../Components/Imagery/image-carousel/image-carousel.component";
 
 @Component({
   selector: 'Homepage',
@@ -9,7 +10,8 @@ import {NavigationBar} from "../../Components/Navigation/navigation-bar/navigati
   imports: [
     CarouselModule,
     TranslocoPipe,
-    NavigationBar
+    NavigationBar,
+    ImageCarousel
   ],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'
