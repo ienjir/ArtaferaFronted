@@ -6,16 +6,18 @@
 :root {
   --Main: #85A1C5;
   --Text: #EAEAEA;
-  --Background: #1A1A1A;
-  --AccentMain: #85A1C5;
+  --PageBackground: #1A1A1A;
+  --Background: #2a2a2a;
+  --Accent1: #85A1C5;
   --Accent2: #DC58E7;
   --Accent3: #1F93B4;
 }
 
 body, html {
-  background-color: var(--Background);
+  background-color: var(--PageBackground);
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 p {
@@ -44,4 +46,3 @@ h2 {
   font-weight: 400;
   line-height: normal;
 }
-

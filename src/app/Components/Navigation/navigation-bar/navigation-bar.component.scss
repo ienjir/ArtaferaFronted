@@ -66,6 +66,27 @@ object {
   display: flex;
 }
 
+.sideBar {
+  display: none;
+  position: fixed;
+  top: 0;
+  padding: 1.5rem;
+  right: 0;
+  min-height: 100vh;
+  z-index: 999;
+  flex-direction: column;
+  background: var(--Background);
+  width: 100%;
+}
+
+.verticalLi {
+  display: flex;
+}
+
+.bottomAlignedDiv {
+  margin-top: auto;
+}
+
 @media (min-width: 992px) {
   .BurgerMenuHorizontal {
     display: none;
@@ -73,5 +94,15 @@ object {
 
   .horizontalLi {
     display: flex;
+  }
+
+  .sideBar {
+    display: none;
+  }
+}
+
+@media (min-width: 576px) {
+  .sideBar {
+    width: auto;
   }
 }
