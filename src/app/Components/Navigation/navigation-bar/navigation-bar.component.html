@@ -7,22 +7,22 @@
         </div>
       </a>
     </li>
-    <li class="mainBarLi NoPoint">
+    <li class="horizontalLi">
       <a href="/">
         <h2>{{ 'Home' | transloco }}</h2>
       </a>
     </li>
-    <li class="mainBarLi NoPoint">
+    <li class="horizontalLi">
       <a href="/aboutme">
         <h2>{{ 'AboutMe' | transloco }}</h2>
       </a>
     </li>
-    <li class="mainBarLi NoPoint">
+    <li class="horizontalLi">
       <a href="/projects">
         <h2>{{ 'Projects' | transloco }}</h2>
       </a>
     </li>
-    <li class="rightAlignedDiv">
+    <li class="horizontalLi rightAlignedDiv">
       <div>
         <a href="/contact">
           <h2>{{ 'Contact' | transloco }}</h2>
@@ -30,8 +30,44 @@
       </div>
     </li>
 
-    <li (click)="toogleSidebar()" class="menuButton">
-      <object data="/assets/svg/Burger.svg" type="image/svg+xml"></object>
+    <li (click)="toggleSidebar()" class="BurgerMenuHorizontal rightAlignedDiv">
+      <object class="w-6 h-6" data="/assets/svg/Burger.svg" type="image/svg+xml"></object>
+    </li>
+  </ul>
+
+  <ul class="sideBar">
+    <li class="logoListItem">
+      <a href="/home">
+        <div class="logoDiv">
+          <img class="logoImg" ngSrc="/assets/images/Logo_Light_Big.png" alt="HomepageLogo" height="687" width="2150">
+        </div>
+      </a>
+    </li>
+    <li class="horizontalLi">
+      <a href="/">
+        <h2>{{ 'Home' | transloco }}</h2>
+      </a>
+    </li>
+    <li class="horizontalLi">
+      <a href="/aboutme">
+        <h2>{{ 'AboutMe' | transloco }}</h2>
+      </a>
+    </li>
+    <li class="horizontalLi">
+      <a href="/projects">
+        <h2>{{ 'Projects' | transloco }}</h2>
+      </a>
+    </li>
+    <li class="horizontalLi rightAlignedDiv">
+      <div>
+        <a href="/contact">
+          <h2>{{ 'Contact' | transloco }}</h2>
+        </a>
+      </div>
+    </li>
+
+    <li (click)="toggleSidebar()" class="BurgerMenuHorizontal rightAlignedDiv">
+      <object class="w-6 h-6" data="/assets/svg/Burger.svg" type="image/svg+xml"></object>
     </li>
   </ul>
 </nav>

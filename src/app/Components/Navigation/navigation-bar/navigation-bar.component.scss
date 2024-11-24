@@ -25,6 +25,7 @@ a {
 h2 {
   padding: 0;
   margin: 0;
+  text-wrap: nowrap;
 }
 
 object {
@@ -36,6 +37,10 @@ object {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.horizontalLi {
+  display: none;
 }
 
 .logoDiv {
@@ -55,4 +60,18 @@ object {
 
 .rightAlignedDiv {
   margin-left: auto;
+}
+
+.BurgerMenuHorizontal {
+  display: flex;
+}
+
+@media (min-width: 992px) {
+  .BurgerMenuHorizontal {
+    display: none;
+  }
+
+  .horizontalLi {
+    display: flex;
+  }
 }

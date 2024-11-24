@@ -15,7 +15,7 @@ import {TranslocoPipe} from "@jsverse/transloco";
 export class NavigationBar {
   openSidebar = false;
 
-  toogleSidebar() {
+  toggleSidebar() {
     this.openSidebar = !this.openSidebar;
     console.log(this.openSidebar);
   }
