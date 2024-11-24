@@ -29,17 +29,15 @@
         </a>
       </div>
     </li>
-
     <li (click)="toggleSidebar()" class="BurgerMenuHorizontal rightAlignedDiv">
       <img ngSrc="/assets/svg/Burger.svg" alt="Burger Menu" height="35" width="40">
     </li>
   </ul>
 
-  <ul [style.display]="openSidebar ? 'flex' : 'none'" class="sideBar">
+  <ul [class.open]="openSidebar" class="sideBar">
     <li (click)="toggleSidebar()">
-      <img ngSrc="/assets/svg/X.svg" alt="Burger Menu" height="40" width="40">
+      <img ngSrc="/assets/svg/X.svg" alt="Close Sidebar" height="40" width="40">
     </li>
-
     <li class="verticalLi">
       <a href="/">
         <h2>{{ 'Home' | transloco }}</h2>
@@ -62,12 +60,12 @@
         </a>
       </div>
     </li>
-
     <li class="logoListItem bottomAlignedDiv">
       <a href="/home">
         <div class="logoDiv">
           <img class="logoImg" priority ngSrc="/assets/images/Logo_Light_Big.png" alt="HomepageLogo" height="687" width="2150">
         </div>
       </a>
+    </li>
   </ul>
 </nav>
