@@ -18,4 +18,9 @@ import {ImageCarousel} from "../../Components/Imagery/image-carousel/image-carou
 })
 export class Homepage {
 
+  slides: {image: string, caption: string}[] = [
+    {image: "https://picsum.photos/id/237/2000/3000", caption: "Pic 1"},
+    {image: "https://picsum.photos/id/337/2000/3000", caption: "Pic 2"},
+    {image: "https://picsum.photos/id/437/2000/3000", caption: "Pic 2"}
+  ]
 }
