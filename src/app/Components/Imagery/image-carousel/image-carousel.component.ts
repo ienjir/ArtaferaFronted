@@ -13,11 +13,7 @@ import {NgForOf} from "@angular/common";
 export class ImageCarousel {
   currentSlideIndex = 0;
 
-  slides = [
-    { image: 'https://picsum.photos/id/1/2000/3000', caption: 'Slide 1' },
-    { image: 'https://picsum.photos/id/5/2000/3000', caption: 'Slide 2' },
-    { image: 'https://picsum.photos/id/87/2000/3000', caption: 'Slide 3' },
-  ];
+  slides: {image: string, caption: string}[] = [];
 
   nextSlide() {
     this.currentSlideIndex = (this.currentSlideIndex + 1) % this.slides.length;
