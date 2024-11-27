@@ -13,4 +13,13 @@ import {RouterOutlet} from "@angular/router";
 })
 export class AppComponent {
   title = 'Artafera';
+
+  changeFavicon(darkMode: boolean): void {
+    const favicon = document.getElementById('app-favicon') as HTMLLinkElement;
+    if (favicon) {
+      favicon.href = darkMode
+        ? 'assets/favicon-dark.ico'
+        : 'assets/favicon-light.ico';
+    }
+  }
 }
