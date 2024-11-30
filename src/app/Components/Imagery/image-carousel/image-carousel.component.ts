@@ -13,7 +13,7 @@ import {NgForOf} from "@angular/common";
 export class ImageCarousel {
   currentSlideIndex = 0;
 
-  @Input() slides: {image: string, caption: string}[] = [];
+  @Input() slides: any = [];
 
   nextSlide() {
     this.currentSlideIndex = (this.currentSlideIndex + 1) % this.slides.length;
