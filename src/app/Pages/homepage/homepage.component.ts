@@ -3,6 +3,7 @@ import { CarouselModule } from 'primeng/carousel';
 import {provideTranslocoScope, TranslocoPipe} from "@jsverse/transloco";
 import {NavigationBar} from "../../Components/Navigation/navigation-bar/navigation-bar.component";
 import {ImageCarousel} from "../../Components/Imagery/image-carousel/image-carousel.component";
+import {Image} from "../../Components/Imagery/image/image.component";
 
 @Component({
   selector: 'Homepage',
@@ -11,7 +12,8 @@ import {ImageCarousel} from "../../Components/Imagery/image-carousel/image-carou
     CarouselModule,
     TranslocoPipe,
     NavigationBar,
-    ImageCarousel
+    ImageCarousel,
+    Image
   ],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss',
