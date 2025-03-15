@@ -19,7 +19,6 @@ $breakpoints: (
 }
 
 
-
 body, html {
   background-color: var(--PageBackground);
   margin: 0;
@@ -48,7 +47,7 @@ h1 {
 h2 {
   font-family: Raleway, sans-serif;
   color: var(--Main);
-    font-size: 1.5rem;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -74,29 +73,34 @@ h2 {
 @include respond-to(xs) {
   .container {
     max-width: 436px;
+    padding: 16px;
   }
 }
 
 @include respond-to(sm) {
   .container {
     max-width: 728px;
+    padding: 16px;
   }
 }
 
 @include respond-to(md) {
   .container {
     max-width: 948px;
+    padding: 20px;
   }
 }
 
 @include respond-to(lg) {
   .container {
     max-width: 1200px;
+    padding: 24px;
   }
 }
 
 @include respond-to(xl) {
   .container {
     max-width: 1356px;
+    padding: 24px;
   }
 }
