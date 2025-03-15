@@ -1,6 +1,7 @@
+@use 'styles' as *;
+
 .loginPage {
   width: 100%;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,3 +15,29 @@
   background: var(--Background)
 }
 
+.loginRoundedImage {
+  min-height: 100vh;
+  height: 100%;
+  width: 50%;
+  background: white; // Default color
+
+  @include respond-to(lg) {
+    background: lightblue;
+  }
+
+  @include respond-to(md) {
+    background: lightgreen;
+  }
+
+  @include respond-to(sm) {
+    background: lightcoral;
+  }
+
+  @include respond-to(xs) {
+    background: lightgoldenrodyellow;
+  }
+
+  @include respond-to(xxs) {
+    background: lightgray;
+  }
+}
