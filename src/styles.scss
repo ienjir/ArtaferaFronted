@@ -1,24 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 $breakpoints: (
-  xxs: 480px,
-  xs: 768px,
-  sm: 991px,
-  md: 1280px,
-  lg: 1920px,
-  xl: 5000px
+  xs: 480px,
+  sm: 768px,
+  md: 1024px,
+  lg: 1280px,
+  xl: 1440px
 );
-
-@mixin respond-to($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    $max-width: map-get($breakpoints, $breakpoint);
-    @media screen and (max-width: $max-width) {
-      @content;
-    }
-  } @else {
-    @error "Invalid breakpoint: #{$breakpoint}.";
-  }
-}
 
 :root {
   --Main: #85A1C5;
@@ -29,6 +17,8 @@ $breakpoints: (
   --Accent2: #DC58E7;
   --Accent3: #1F93B4;
 }
+
+
 
 body, html {
   background-color: var(--PageBackground);
@@ -62,4 +52,51 @@ h2 {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $max-width: map-get($breakpoints, $breakpoint);
+    @media screen and (max-width: $max-width) {
+      @content;
+    }
+  } @else {
+    @error "Invalid breakpoint: #{$breakpoint}.";
+  }
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@include respond-to(xs) {
+  .container {
+    max-width: 436px;
+  }
+}
+
+@include respond-to(sm) {
+  .container {
+    max-width: 728px;
+  }
+}
+
+@include respond-to(md) {
+  .container {
+    max-width: 948px;
+  }
+}
+
+@include respond-to(lg) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+@include respond-to(xl) {
+  .container {
+    max-width: 1356px;
+  }
 }

@@ -36,8 +36,4 @@
   @include respond-to(xs) {
     background: lightgoldenrodyellow;
   }
-
-  @include respond-to(xxs) {
-    background: lightgray;
-  }
 }
