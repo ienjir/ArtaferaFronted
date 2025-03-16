@@ -21,19 +21,19 @@
   width: 50%;
   background: white; // Default color
 
-  @include respond-to(lg) {
+  @include respond-from(lg) {
     background: lightblue;
   }
 
-  @include respond-to(md) {
+  @include respond-from(md) {
     background: lightgreen;
   }
 
-  @include respond-to(sm) {
+  @include respond-from(sm) {
     background: lightcoral;
   }
 
-  @include respond-to(xs) {
+  @include respond-from(xs) {
     background: lightgoldenrodyellow;
   }
 }

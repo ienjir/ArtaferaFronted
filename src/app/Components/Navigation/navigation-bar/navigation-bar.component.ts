@@ -13,7 +13,7 @@ import {TranslocoPipe} from "@jsverse/transloco";
   styleUrl: './navigation-bar.component.scss'
 })
 export class NavigationBar {
-  openSidebar = true;
+  openSidebar = false;
 
   toggleSidebar() {
     this.openSidebar = !this.openSidebar;
