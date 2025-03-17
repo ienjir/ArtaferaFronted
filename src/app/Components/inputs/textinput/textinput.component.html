@@ -1,1 +1,4 @@
-<p>textinput works!</p>
+<div class="floating-label">
+  <label [class.floating]="isFocused || hasValue">{{ label }}</label>
+  <ng-content></ng-content>
+</div>

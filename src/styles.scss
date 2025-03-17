@@ -10,7 +10,8 @@ $breakpoints: (
 
 :root {
   --Main: #A5BCD5;
-  --Text: #EAEAEA;
+  --Text: rgb(234, 234, 234);
+  --Text80: rgba(234, 234, 234, 60);
   --PageBackground: #1A1A1A;
   --Background: #2a2a2a;
   --Accent1: #85A1C5;
@@ -24,6 +25,7 @@ body, html {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  font-family: Raleway sans-serif;
 }
 
 p {
@@ -47,10 +49,33 @@ h1 {
 h2 {
   font-family: Raleway, sans-serif;
   color: var(--Main);
+  background: transparent !important;
   font-size: 2rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+label {
+  font-family: Raleway sans-serif;
+}
+
+input {
+  padding: 0.625rem 0.8125rem;
+  border: 3px solid var(--Main);
+  background-color: transparent;
+  border-radius: 0;
+  font-family: Raleway sans-serif;
+  color: var(--Text) !important;
+  font-size: 1rem;
+
+  &:focus {
+    color: var(--Text)
+  }
+
+  &::placeholder {
+    color: var(--Text80)
+  }
 }
 
 @mixin respond-from($breakpoint) {

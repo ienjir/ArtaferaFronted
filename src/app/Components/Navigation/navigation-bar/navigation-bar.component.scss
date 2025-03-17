@@ -1,5 +1,10 @@
 @use "styles" ;
 
+button {
+  background-color: transparent;
+  border: none;
+}
+
 ul {
   margin: 0;
   padding: 0;
@@ -64,6 +69,19 @@ object {
 
 .BurgerMenuHorizontal {
   display: flex;
+  cursor: pointer;
+
+  &:focus {
+    background-color: red;
+  }
+}
+
+.close {
+  cursor: pointer;
+
+  &:focus {
+    background-color: red;
+  }
 }
 
 .sideBar {
