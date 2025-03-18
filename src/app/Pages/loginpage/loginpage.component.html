@@ -1,9 +1,18 @@
 <div class="container">
   <NavigationBar></NavigationBar>
+  <div class="rounded-image"></div>
 
-  <div class="loginDiv">
-    <Textinput label="Enter Text">
-      <input #input type="text" />
-    </Textinput>
+  <div class="login">
+    <form [formGroup]="loginForm" class="login__form">
+      <Textinput label="Enter Text">
+        <input #input id="email" type="text" formControlName="email">
+      </Textinput>
+      <Textinput label="Enter Text">
+        <input #input id="input" type="text" formControlName="password"/>
+      </Textinput>
+      <a href="" class="login__forgot-password">Forgot password</a>
+      <button class="login__login-button"></button>
+    </form>
   </div>
+  <button class="signup-button">Sign up</button>
 </div>

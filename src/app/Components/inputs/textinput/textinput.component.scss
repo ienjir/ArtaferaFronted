@@ -1,12 +1,13 @@
 .floating-label {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
   width: 100%;
 
   label {
     position: absolute;
     top: 50%;
-    left: calc(1rem - 1px);
+    padding: 3px;
+    left: calc(1rem - 3px);
     transform: translateY(-50%);
     transition: all 0.3s ease;
     color: var(--Text80);
@@ -14,9 +15,9 @@
   }
 
   label.floating {
+    background: var(--Background);
     color: var(--Text);
     top: 0;
     font-size: 0.8rem;
-    padding: 1px;
   }
 }

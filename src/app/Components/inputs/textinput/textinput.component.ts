@@ -12,12 +12,14 @@ export class FloatingLabelComponent implements AfterViewInit {
   @ContentChild('input', { static: false }) inputElement!: ElementRef;
   isFocused = false;
   hasValue = false;
+  isFocusVisible = false;
 
   constructor(private renderer: Renderer2) {}
 
   ngAfterViewInit(): void {
     if (this.inputElement) {
       this.renderer.listen(this.inputElement.nativeElement, 'focus', () => {
+        console.log("ture")
         this.isFocused = true;
       });
       this.renderer.listen(this.inputElement.nativeElement, 'blur', () => {

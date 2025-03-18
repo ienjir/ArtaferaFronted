@@ -62,15 +62,17 @@ label {
 
 input {
   padding: 0.625rem 0.8125rem;
+  flex-grow: 1;
   border: 3px solid var(--Main);
   background-color: transparent;
   border-radius: 0;
   font-family: Raleway sans-serif;
   color: var(--Text) !important;
   font-size: 1rem;
+  outline: none;
 
-  &:focus {
-    color: var(--Text)
+  &:focus-visible {
+    border: red 3px solid !important;
   }
 
   &::placeholder {
@@ -96,36 +98,16 @@ input {
 }
 
 @include respond-from(xs) {
-  .container {
-    max-width: 436px;
-    padding: 16px;
-  }
 }
 
 @include respond-from(sm) {
-  .container {
-    max-width: 728px;
-    padding: 16px;
-  }
 }
 
 @include respond-from(md) {
-  .container {
-    max-width: 948px;
-    padding: 20px;
-  }
 }
 
 @include respond-from(lg) {
-  .container {
-    max-width: 1200px;
-    padding: 24px;
-  }
 }
 
 @include respond-from(xl) {
-  .container {
-    max-width: 1356px;
-    padding: 24px;
-  }
 }

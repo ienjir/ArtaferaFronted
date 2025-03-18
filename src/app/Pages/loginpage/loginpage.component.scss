@@ -7,33 +7,42 @@
   align-items: center;
 }
 
-.loginDiv {
+.login {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding: 1rem;
-  background: var(--Background)
+  background: var(--Background);
+  gap: 0.5rem;
+}
+
+.login__form {
+  display: flex;
+  gap: 1rem;
+  flex-grow: 1;
+  flex-direction: column;
+
 }
 
 .loginRoundedImage {
+  display: none;
   min-height: 100vh;
   height: 100%;
   width: 50%;
-  background: white; // Default color
+  background: white;
+}
 
-  @include respond-from(lg) {
-    background: lightblue;
-  }
+@include respond-from(lg) {
+}
 
-  @include respond-from(md) {
-    background: lightgreen;
+@include respond-from(md) {
+  .loginRoundedImage {
+    display: flex;
   }
+}
 
-  @include respond-from(sm) {
-    background: lightcoral;
-  }
+@include respond-from(sm) {
+}
 
-  @include respond-from(xs) {
-    background: lightgoldenrodyellow;
-  }
+@include respond-from(xs) {
 }
