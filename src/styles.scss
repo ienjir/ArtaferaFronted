@@ -57,7 +57,7 @@ h2 {
 }
 
 label {
-  font-family: Raleway sans-serif;
+  font-family: Roboto sans-serif;
 }
 
 input {
@@ -66,19 +66,27 @@ input {
   border: 3px solid var(--Main);
   background-color: transparent;
   border-radius: 0;
-  font-family: Raleway sans-serif;
-  color: var(--Text) !important;
+  font-family: Roboto sans-serif;
+  color: var(--Text);
   font-size: 1rem;
   outline: none;
-
-  &:focus-visible {
-    border: red 3px solid !important;
-  }
-
-  &::placeholder {
-    color: var(--Text80)
-  }
 }
+
+input:focus {
+  border: 3px solid orange;
+}
+
+input:focus {
+  border: 3px solid green;
+}
+
+button {
+  padding: 1rem;
+  display: flex;
+  flex-grow: 1;
+
+}
+
 
 @mixin respond-from($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {

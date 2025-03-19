@@ -1,23 +1,42 @@
-.floating-label {
+.text-input {
   position: relative;
   display: inline-flex;
   width: 100%;
 
-  label {
+  &__label {
     position: absolute;
     top: 50%;
-    padding: 3px;
-    left: calc(1rem - 3px);
+    left: 1rem;
     transform: translateY(-50%);
     transition: all 0.3s ease;
     color: var(--Text80);
     pointer-events: none;
+    background: transparent;
+    padding: 3px;
+
+    &--floating {
+      background: var(--Background);
+      color: var(--Text);
+      top: 0;
+      font-size: 0.8rem;
+    }
   }
 
-  label.floating {
-    background: var(--Background);
-    color: var(--Text);
-    top: 0;
-    font-size: 0.8rem;
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 3px solid var(--Border);
+    border-radius: 4px;
+    transition: border 0.3s ease;
+    outline: none;
   }
+
+  &--focus-visible input {
+      border: green 3px solid !important;
+  }
+
+  &--focus-click input {
+      border: green 3px solid;
+  }
+
 }
