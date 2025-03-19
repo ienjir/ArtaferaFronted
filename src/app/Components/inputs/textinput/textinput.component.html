@@ -1,8 +1,4 @@
-<div class="text-input"
-     [class.text-input--focus-visible]="isFocusVisible"
-     [class.text-input--focus-click]="isFocusClick">
-  <label class="text-input__label" [class.text-input__label--floating]="isFocused || hasValue">
-    {{ label }}
-  </label>
+<div class="text-input">
+  <label class="text-input__label" [class.text-input__label--floating]="isFocused || hasValue">{{ label }}</label>
   <ng-content></ng-content>
 </div>
