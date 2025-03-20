@@ -2,5 +2,10 @@
   "Home": "Home",
   "AboutMe": "Über mich",
   "Projects": "Projekte",
-  "Contact": "Kontakt"
+  "Contact": "Kontakt",
+  "Email": "Email",
+  "Password": "Passwort",
+  "ResetPassword": "Passwort zurücksetzen",
+  "LogIn": "Einloggen",
+  "SignUp": "Konto erstellen"
 }

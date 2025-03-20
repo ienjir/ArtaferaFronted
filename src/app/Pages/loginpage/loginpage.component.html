@@ -4,15 +4,17 @@
 
   <div class="login">
     <form [formGroup]="loginForm" class="login__form">
-      <Textinput label="Enter Text">
+      <Textinput [label]="'Email' | transloco">
         <input #input id="email" type="text" formControlName="email">
       </Textinput>
-      <Textinput label="Enter Text">
+      <Textinput [label]="'Email' | transloco">
         <input #input id="input" type="text" formControlName="password"/>
       </Textinput>
-      <a href="" class="login__reset-password">Forgot password</a>
-      <button class="login__login-button"></button>
+      <a href="" class="login__reset-password">{{ 'ResetPassword' | transloco }}</a>
+      <div class="login__button-container">
+        <button class="login__login-button">{{ 'LogIn' | transloco }}</button>
+      </div>
     </form>
   </div>
-  <button class="signup-button">Sign up</button>
+  <button class="signup-button">{{ 'SignUp' | transloco }}</button>
 </div>

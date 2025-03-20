@@ -79,8 +79,11 @@ input {
 
 button {
   padding: 1rem;
+  background-color: transparent;
+  color: var(--Text);
+  outline: 0;
+  border: 3px solid var(--Main)
 }
-
 
 @mixin respond-from($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
