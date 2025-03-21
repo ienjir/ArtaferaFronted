@@ -71,8 +71,12 @@ object {
   display: flex;
   cursor: pointer;
 
-  &:focus {
-    background-color: red;
+  &:hover {
+    cursor: pointer;
+  }
+
+  button {
+    cursor: pointer;
   }
 }
 
