@@ -62,11 +62,13 @@ label {
 }
 
 input {
-  padding: 0.71875rem 0.8125rem;
+  padding: 0 0.8125rem;
+  min-height: calc(3rem - 6px);
   flex-grow: 1;
   border: 3px solid var(--Main);
   background-color: transparent;
   border-radius: 0;
+  width: 100%;
   font-family: Roboto sans-serif;
   color: var(--Text);
   font-size: 1rem;
@@ -78,7 +80,9 @@ input {
 }
 
 button {
-  padding: 1rem;
+  padding: 0 0.8125rem;
+  border-radius: 0;
+  min-height: calc(3rem);
   background-color: transparent;
   color: var(--Text);
   outline: 0;

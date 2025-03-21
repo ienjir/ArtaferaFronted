@@ -9,10 +9,10 @@ import { provideTransloco } from '@jsverse/transloco';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), provideClientHydration(), provideHttpClient(), provideTransloco({
-        config: { 
+        config: {
           availableLangs: ['de', 'en', 'es', 'fr'],
           defaultLang: 'de',
-          // Remove this option if your application doesn't support changing language in runtime.
+          fallbackLang: 'de',
           reRenderOnLangChange: true,
           prodMode: !isDevMode(),
         },
