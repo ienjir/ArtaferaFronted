@@ -1,19 +1,37 @@
 import {AfterViewInit, Component, ContentChild, ElementRef, Input, Renderer2} from '@angular/core';
+import {NgIf, NgStyle} from "@angular/common";
 
 @Component({
   selector: 'Textinput',
   standalone: true,
-  imports: [],
+  imports: [
+    NgStyle,
+    NgIf
+  ],
   templateUrl: './textinput.component.html',
   styleUrl: './textinput.component.scss'
 })
 export class FloatingLabelComponent implements AfterViewInit {
   @Input() label!: string;
-  @ContentChild('input', { static: false }) inputElement!: ElementRef;
+  @Input() password: boolean = false
+  showPassword = false
+  @ContentChild('input', {static: false}) inputElement!: ElementRef;
   isFocused = false;
   hasValue = false;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2) {
+  }
+
+
+  handleShowPassword() {
+    this.showPassword = !this.showPassword
+
+    if (this.showPassword) {
+      this.inputElement.nativeElement.type = "text"
+    } else {
+      this.inputElement.nativeElement.type = "password"
+    }
+  }
 
   ngAfterViewInit(): void {
     if (this.inputElement) {
@@ -40,6 +58,12 @@ export class FloatingLabelComponent implements AfterViewInit {
       });
 
       this.hasValue = !!nativeInput.value;
+
+      if (this.password) {
+        nativeInput.type = "password"
+      }
     }
+
   }
+
 }

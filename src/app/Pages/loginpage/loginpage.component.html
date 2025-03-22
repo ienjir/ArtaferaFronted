@@ -3,14 +3,17 @@
   <div class="rounded-image"></div>
 
   <div class="login">
+    <h2>{{ 'LogIn' | transloco }}</h2>
     <form [formGroup]="loginForm" class="login__form">
       <Textinput [label]="'Email' | transloco">
         <input #input id="email" type="text" formControlName="email">
       </Textinput>
-      <Textinput [label]="'Password' | transloco">
-        <input #input id="input" type="text" formControlName="password"/>
-      </Textinput>
-      <a href="" class="login__reset-password">{{ 'ResetPassword' | transloco }}</a>
+      <div class="login__password-container">
+        <Textinput [label]="'Password' | transloco" [password]="true">
+          <input #input id="input" type="text" formControlName="password"/>
+        </Textinput>
+        <a href="" class="login__reset-password">{{ 'ResetPassword' | transloco }}</a>
+      </div>
       <div class="login__button-container">
         <button class="login__login-button">{{ 'LogIn' | transloco }}</button>
       </div>

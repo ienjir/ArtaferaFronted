@@ -22,4 +22,38 @@
       font-size: 0.8rem;
     }
   }
+
+
+  &__show-password {
+    position: absolute;
+    right: 3px;
+    padding-right: 2px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+
+    button {
+      border: none;
+      background: var(--Background);
+      display: inline-flex;
+      align-items: center;
+      padding: 3px;
+      min-height: 0;
+      height: calc(100% - 6px);
+      cursor: pointer;
+    }
+
+    svg {
+      padding: 0.2rem 0;
+    }
+
+    &--show {
+      display: flex;
+    }
+
+    &--hide {
+      display: flex !important;
+    }
+  }
 }

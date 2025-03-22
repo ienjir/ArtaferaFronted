@@ -1,16 +1,17 @@
 @use 'styles' as *;
 
 .container {
-  min-height: calc(100vh - 48px);
+  min-height: calc(100vh - 16px - 3.5rem);
   justify-content: space-between;
-  padding-bottom: 2.5rem;
+  padding-bottom: 4.5rem;
 }
 
 .login {
   display: flex;
+  flex-direction: column;
   justify-content: flex-end;
-  align-items: center;
-  padding: 1.5rem;
+  align-items: start;
+  padding: 1.5rem 1.5rem 3rem;
   background: var(--Background);
 }
 
@@ -28,6 +29,8 @@
 
 .login__reset-password {
   color: var(--Text);
+  font-size: 0.9rem;
+  text-decoration: none;
 }
 
 .login__button-container {
@@ -38,6 +41,12 @@
   button {
     width: 50%;
   }
+}
+
+.login__password-container {
+   display: flex;
+  flex-direction: column;
+  gap: 0.5rem
 }
 
 .loginRoundedImage {
