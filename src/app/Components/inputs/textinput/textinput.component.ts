@@ -1,12 +1,15 @@
 import {AfterViewInit, Component, ContentChild, ElementRef, Input, Renderer2} from '@angular/core';
-import {NgIf, NgStyle} from "@angular/common";
+import {NgIf, NgOptimizedImage, NgStyle} from "@angular/common";
+import {TranslocoPipe} from "@jsverse/transloco";
 
 @Component({
   selector: 'Textinput',
   standalone: true,
   imports: [
     NgStyle,
-    NgIf
+    NgIf,
+    NgOptimizedImage,
+    TranslocoPipe
   ],
   templateUrl: './textinput.component.html',
   styleUrl: './textinput.component.scss'

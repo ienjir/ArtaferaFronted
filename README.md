@@ -4,6 +4,8 @@
 
 ## ToDo
 
+- Reset password
+
 ## Development
 
 To start the Artafera backend you the following things:

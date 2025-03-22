@@ -7,5 +7,7 @@
   "Password": "Passwort",
   "ResetPassword": "Passwort zurücksetzen",
   "LogIn": "Einloggen",
-  "SignUp": "Konto erstellen"
+  "SignUp": "Konto erstellen",
+  "ShowPassword": "Passwort anzeigen",
+  "HidePassword": "Password nicht mehr anzeigen"
 }
