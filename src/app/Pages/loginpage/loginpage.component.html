@@ -10,12 +10,14 @@
       </Textinput>
       <div class="login__password-container">
         <Textinput [label]="'Password' | transloco" [password]="true">
-          <input #input id="input" type="text" formControlName="password"/>
+          <input #input id="password" type="password" formControlName="password"/>
         </Textinput>
         <a href="" class="login__reset-password">{{ 'ResetPassword' | transloco }}</a>
       </div>
       <div class="login__button-container">
-        <button class="login__login-button">{{ 'LogIn' | transloco }}</button>
+        <button type="button" class="login__login-button" (click)="submitLogin()">
+          {{ 'LogIn' | transloco }}
+        </button>
       </div>
     </form>
   </div>
