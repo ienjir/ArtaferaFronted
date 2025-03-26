@@ -5,6 +5,8 @@
 ## ToDo
 
 - Reset password
+- Validation for Login
+- Internalisation for everywhere
 
 ## Development
 

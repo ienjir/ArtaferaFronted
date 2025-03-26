@@ -15,11 +15,11 @@
         <a href="" class="login__reset-password">{{ 'ResetPassword' | transloco }}</a>
       </div>
       <div class="login__button-container">
-        <button type="button" class="login__login-button" (click)="submitLogin()">
-          {{ 'LogIn' | transloco }}
-        </button>
+        <button type="button" class="login__login-button" (click)="submitLogin()">{{ 'LogIn' | transloco }}</button>
       </div>
     </form>
   </div>
-  <button class="signup-button">{{ 'SignUp' | transloco }}</button>
+  <div class="signup">
+    <button class="signup__button">{{ 'SignUp' | transloco }}</button>
+  </div>
 </div>

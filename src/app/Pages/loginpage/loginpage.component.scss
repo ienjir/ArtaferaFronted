@@ -6,6 +6,14 @@
   padding-bottom: 4.5rem;
 }
 
+.loginRoundedImage {
+  display: none;
+  min-height: 100vh;
+  height: 100%;
+  width: 50%;
+  background: white;
+}
+
 .login {
   display: flex;
   flex-direction: column;
@@ -27,6 +35,12 @@
   display: none;
 }
 
+.login__password-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem
+}
+
 .login__reset-password {
   color: var(--Text);
   font-size: 0.9rem;
@@ -43,21 +57,22 @@
   }
 }
 
-.login__password-container {
-   display: flex;
-  flex-direction: column;
-  gap: 0.5rem
+
+.signup {
+  padding: 1.5rem 1.5rem 3rem;
 }
 
-.loginRoundedImage {
-  display: none;
-  min-height: 100vh;
-  height: 100%;
-  width: 50%;
-  background: white;
+.signup__button {
+  align-items: center;
+  justify-content: center;
+  flex-grow: 0;
 }
 
-@include respond-from(lg) {
+@include respond-from(xs) {
+
+}
+
+@include respond-from(sm) {
 }
 
 @include respond-from(md) {
@@ -66,8 +81,8 @@
   }
 }
 
-@include respond-from(sm) {
+@include respond-from(lg) {
 }
 
-@include respond-from(xs) {
-}
+
+
