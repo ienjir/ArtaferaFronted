@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { tap, Observable } from 'rxjs';
-import {environment} from "../../../environments/environment";
+import { environment } from '../../../environments/environment';
+import { isPlatformBrowser } from '@angular/common';
 
 interface TokenPair {
   access_token: string;
@@ -12,35 +13,26 @@ interface TokenPair {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = environment.apiUrl + "/auth"
-  private accessTokenKey = 'accessToken';
-  private refreshTokenKey = 'refreshToken';
+  private apiUrl = environment.apiUrl + "/auth";
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: object
+  ) {}
 
-  login(email: string, password: string): Observable<{ token: TokenPair }> {
-    return this.http.post<{ token: TokenPair }>(`${this.apiUrl}/login`, { email, password }).pipe(
-      tap(response => {
-        localStorage.setItem(this.accessTokenKey, response.token.access_token);
-        localStorage.setItem(this.refreshTokenKey, response.token.refresh_token);
-      })
-    );
+  login(email: string, password: string): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/login`, { email, password }, { withCredentials: true });
   }
 
-  refreshToken(): Observable<TokenPair> {
-    const refreshToken = localStorage.getItem(this.refreshTokenKey);
-    const headers = new HttpHeaders({
-      'X-Refresh-Token': refreshToken || ''
-    });
-    return this.http.post<TokenPair>(`${this.apiUrl}/refresh`, {}, { headers }).pipe(
-      tap(response => {
-        localStorage.setItem(this.accessTokenKey, response.access_token);
-        localStorage.setItem(this.refreshTokenKey, response.refresh_token);
-      })
-    );
+  refreshToken(): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/refresh`, {}, { withCredentials: true });
   }
 
   getAccessToken(): string | null {
-    return localStorage.getItem(this.accessTokenKey);
+    if (isPlatformBrowser(this.platformId)) {
+      const match = document.cookie.match(/(?:^|; )access_token=([^;]*)/);
+      return match ? decodeURIComponent(match[1]) : null;
+    }
+    return null;
   }
 }

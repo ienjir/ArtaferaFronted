@@ -4,7 +4,7 @@ import { FloatingLabelComponent } from "../../Components/inputs/textinput/textin
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
 import { TranslocoPipe } from "@jsverse/transloco";
 import { AuthService } from "../../Services/login/auth-service.service";
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @Component({
   selector: 'LoginPage',
@@ -26,6 +26,17 @@ export class LoginPage {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
+
+  data: any;
+
+  constructor(private http: HttpClient) {}
+
+  fetchProtectedData() {
+    this.http.get('http://localhost:8080/user/getByID/1').subscribe({
+      next: (response) => (this.data = response),
+      error: (error) => console.error('Error fetching protected data:', error),
+    });
+  }
 
   submitLogin() {
     if (this.loginForm.invalid) {
