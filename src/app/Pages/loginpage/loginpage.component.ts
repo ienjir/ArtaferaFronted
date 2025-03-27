@@ -3,7 +3,7 @@ import { NavigationBar } from "../../Components/Navigation/navigation-bar/naviga
 import { FloatingLabelComponent } from "../../Components/inputs/textinput/textinput.component";
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
 import { TranslocoPipe } from "@jsverse/transloco";
-import { AuthService } from "../../Services/login/auth-service.service";
+import { AuthService } from "../../Services/auth/auth.service";
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @Component({
