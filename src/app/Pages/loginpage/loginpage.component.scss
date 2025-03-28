@@ -1,9 +1,15 @@
 @use 'styles' as *;
 
 .container {
-  min-height: calc(100vh - 16px - 3.5rem);
+  min-height: calc(100vh - 16px - 4.5rem);
   justify-content: space-between;
+  align-items: center;
+  position: relative;
   padding-bottom: 4.5rem;
+}
+
+.navigation {
+  width: 100%;
 }
 
 .loginRoundedImage {
@@ -16,6 +22,8 @@
 
 .login {
   display: flex;
+  inset: 0;
+  width: calc(100% - 48px);
   flex-direction: column;
   justify-content: flex-end;
   align-items: start;
@@ -60,16 +68,30 @@
 
 .signup {
   padding: 1.5rem 1.5rem 3rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .signup__button {
+  width: 50%;
   align-items: center;
   justify-content: center;
   flex-grow: 0;
 }
 
 @include respond-from(xs) {
+  .login {
+    width: 70%;
+  }
 
+  .signup {
+    width: 70%;
+  }
+
+  .signup__button {
+    width: 100%;
+  }
 }
 
 @include respond-from(sm) {
