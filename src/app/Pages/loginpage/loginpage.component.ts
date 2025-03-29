@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators, ReactiveFormsModule } from "@angula
 import { TranslocoPipe } from "@jsverse/transloco";
 import { AuthService } from "../../Services/auth/auth.service";
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'LoginPage',
@@ -14,7 +15,8 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     FloatingLabelComponent,
     ReactiveFormsModule,
     TranslocoPipe,
-    HttpClientModule
+    HttpClientModule,
+    NgOptimizedImage
   ],
   templateUrl: './loginpage.component.html',
   styleUrl: './loginpage.component.scss'

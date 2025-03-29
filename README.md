@@ -5,6 +5,7 @@
 ## ToDo
 
 - Reset password
+- Remember me checkboxss
 - Validation for Login
 - Internalisation for everywhere
 

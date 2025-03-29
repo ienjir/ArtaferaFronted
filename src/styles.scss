@@ -96,9 +96,18 @@ button {
   color: var(--Text);
   outline: 0;
   border: 3px solid var(--Main);
+  transition: ease 100ms;
 
   &:focus-visible {
     border: 3px solid var(--Focus) !important;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    transform: scale(0.9);
   }
 }
 

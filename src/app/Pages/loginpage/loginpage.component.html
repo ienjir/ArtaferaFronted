@@ -1,25 +1,31 @@
 <div class="container">
   <NavigationBar class="navigation"></NavigationBar>
-  <div class="rounded-image"></div>
+  <div class="content">
+    <div class="rounded-image">
+      <img class="rounded-image__image" ngSrc="/assets/images/ding-dong3.jpg" width="3872" height="2592" alt="Rounded Image">
+    </div>
 
-  <div class="login">
-    <h2>{{ 'LogIn' | transloco }}</h2>
-    <form [formGroup]="loginForm" class="login__form">
-      <Textinput [label]="'Email' | transloco">
-        <input #input id="email" type="text" formControlName="email">
-      </Textinput>
-      <div class="login__password-container">
-        <Textinput [label]="'Password' | transloco" [password]="true">
-          <input #input id="password" type="password" formControlName="password"/>
-        </Textinput>
-        <a href="" class="login__reset-password">{{ 'ResetPassword' | transloco }}</a>
+    <div class="login-signup-container">
+      <div class="login">
+        <h2>{{ 'LogIn' | transloco }}</h2>
+        <form [formGroup]="loginForm" class="login__form">
+          <Textinput [label]="'Email' | transloco">
+            <input #input id="email" type="text" formControlName="email">
+          </Textinput>
+          <div class="login__password-container">
+            <Textinput [label]="'Password' | transloco" [password]="true">
+              <input #input id="password" type="password" formControlName="password"/>
+            </Textinput>
+            <a href="" class="login__reset-password">{{ 'ResetPassword' | transloco }}</a>
+          </div>
+          <div class="login__button-container">
+            <button type="button" class="login__login-button" (click)="submitLogin()">{{ 'LogIn' | transloco }}</button>
+          </div>
+        </form>
       </div>
-      <div class="login__button-container">
-        <button type="button" class="login__login-button" (click)="submitLogin()">{{ 'LogIn' | transloco }}</button>
+      <div class="signup">
+        <button class="signup__button" (click)="fetchProtectedData()">{{ 'SignUp' | transloco }}</button>
       </div>
-    </form>
-  </div>
-  <div class="signup">
-    <button class="signup__button" (click)="fetchProtectedData()">{{ 'SignUp' | transloco }}</button>
+    </div>
   </div>
 </div>

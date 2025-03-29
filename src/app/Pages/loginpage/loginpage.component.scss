@@ -5,19 +5,50 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  padding-bottom: 4.5rem;
 }
 
 .navigation {
   width: 100%;
 }
 
-.loginRoundedImage {
+.content {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  align-items: center;
+}
+
+.rounded-image {
+  left: -16px;
   display: none;
-  min-height: 100vh;
+  position: relative;
   height: 100%;
+  min-height: 60vh;
   width: 50%;
   background: white;
+  border-radius: 0 1000rem 1000rem 0;
+  overflow: hidden;
+}
+
+.rounded-image__image {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+.login-signup-container {
+  display: flex;
+  flex-grow: 1;
+  min-height: 60vh;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 
 .login {
@@ -37,10 +68,6 @@
   flex-direction: column;
   gap: 1rem;
   width: 100%
-}
-
-.rounded-image {
-  display: none;
 }
 
 .login__password-container {
@@ -67,7 +94,6 @@
 
 
 .signup {
-  padding: 1.5rem 1.5rem 3rem;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -98,12 +124,15 @@
 }
 
 @include respond-from(md) {
-  .loginRoundedImage {
+  .rounded-image {
     display: flex;
   }
 }
 
 @include respond-from(lg) {
+  .rounded-image {
+    min-height: 70vh;
+  }
 }
 
 
