@@ -17,6 +17,7 @@ import {TranslocoPipe} from "@jsverse/transloco";
 export class FloatingLabelComponent implements AfterViewInit {
   @Input() label!: string;
   @Input() password: boolean = false
+  type: string = "text"
   showPassword = false
   @ContentChild('input', {static: false}) inputElement!: ElementRef;
   isFocused = false;
@@ -39,6 +40,7 @@ export class FloatingLabelComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     if (this.inputElement) {
       const nativeInput = this.inputElement.nativeElement;
+      this.type = nativeInput.type
 
       this.renderer.listen(nativeInput, 'focus', () => {
         this.isFocused = true;
@@ -65,6 +67,8 @@ export class FloatingLabelComponent implements AfterViewInit {
       if (this.password) {
         nativeInput.type = "password"
       }
+
+      console.log(this.type)
     }
 
   }

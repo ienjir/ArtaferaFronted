@@ -3,57 +3,63 @@
   display: inline-flex;
   flex-grow: 1;
   width: 100%;
-
-  &__label {
-    position: absolute;
-    top: 50%;
-    left: calc(1rem - 2px);
-    transform: translateY(-50%);
-    transition: all 0.3s ease;
-    color: var(--Text80);
-    pointer-events: none;
-    background: transparent;
-    padding: 3px;
-
-    &--floating {
-      background: var(--Background);
-      color: var(--Text);
-      top: 0;
-      font-size: 0.8rem;
-    }
-  }
-
-
-  &__show-password {
-    position: absolute;
-    right: 3px;
-    padding-right: 2px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    transition: all 0.3s ease;
-
-    button {
-      border: none;
-      background: var(--Background);
-      display: inline-flex;
-      align-items: center;
-      padding: 3px;
-      min-height: 0;
-      height: calc(100% - 6px);
-      cursor: pointer;
-    }
-
-    img {
-      padding: 0.2rem 0;
-    }
-
-    &--show {
-      display: flex;
-    }
-
-    &--hide {
-      display: flex !important;
-    }
-  }
+  align-items: center;
 }
+
+.text-input__label--text {
+  position: absolute;
+  top: 50%;
+  left: calc(1rem - 2px);
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  background: transparent;
+  padding: 3px;
+}
+
+.text-input__label--text--floating {
+  background: var(--Background);
+  color: var(--Text);
+  top: 0;
+  font-size: 0.8rem;
+}
+
+.text-input__label--checkbox {
+  padding-left: 0.5rem;
+}
+
+.text-input__show-password {
+  position: absolute;
+  right: 3px;
+  padding-right: 2px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+
+  button {
+    border: none;
+    background: var(--Background);
+    display: inline-flex;
+    align-items: center;
+    padding: 3px;
+    min-height: 0;
+    height: calc(100% - 6px);
+    cursor: pointer;
+  }
+
+  img {
+    padding: 0.2rem 0;
+  }
+
+}
+
+.text-input__show-password--show {
+  display: flex;
+}
+
+.text-input__show-password--hide {
+  display: flex !important;
+}
+
+
