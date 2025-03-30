@@ -15,6 +15,7 @@ import {TranslocoPipe} from "@jsverse/transloco";
 })
 export class InputWrapper implements AfterViewInit {
   @Input() label!: string;
+  @Input() errorMessage!: string;
   type: string = "text"
   showPassword = false
   @ContentChild('input', {static: false}) inputElement!: ElementRef;

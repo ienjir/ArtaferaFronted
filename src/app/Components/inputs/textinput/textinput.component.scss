@@ -62,3 +62,14 @@
     display: flex !important;
   }
 }
+
+.text-input__error {
+  position: absolute;
+  bottom: -22%;
+  left: calc(1rem - 2px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  background: var(--Background);
+  padding: 3px;
+  color: var(--Red);
+}

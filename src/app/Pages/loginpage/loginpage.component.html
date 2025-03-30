@@ -13,12 +13,12 @@
             <input #input id="email" type="text" formControlName="email">
           </InputWrapper>
           <div class="login__password-container">
-            <InputWrapper [label]="'Password' | transloco" type="password">
+            <InputWrapper [label]="'Password' | transloco" type="password" errorMessage="Error">
               <input #input id="password" type="password" formControlName="password"/>
             </InputWrapper>
             <a href="" class="login__reset-password">{{ 'ResetPassword' | transloco }}</a>
           </div>
-          <InputWrapper [label]="'StaySignedIn' | transloco">
+          <InputWrapper [label]="'StaySignedIn' | transloco" >
             <input #input type="checkbox" checked="checked">
           </InputWrapper>
           <div class="login__button-container">

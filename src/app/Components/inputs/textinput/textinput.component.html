@@ -1,6 +1,7 @@
-<div  class="text-input">
+<div class="text-input">
   <!-- Label for text and password -->
-  <label *ngIf="type === 'text' || type === 'password'" class="text-input__label--text" [class.text-input__label--text--floating]="isFocused || hasValue">
+  <label *ngIf="type === 'text' || type === 'password'" class="text-input__label--text"
+         [class.text-input__label--text--floating]="isFocused || hasValue">
     {{ label }}
   </label>
 
@@ -19,4 +20,8 @@
       <img ngSrc="/assets/svg/Eye__open.svg" [alt]="'HidePassword' | transloco " height="25" width="40">
     </button>
   </div>
+
+  <label *ngIf="errorMessage" class="text-input__error">
+    {{ errorMessage }}
+  </label>
 </div>
