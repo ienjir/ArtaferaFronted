@@ -3,10 +3,9 @@ import {NgIf, NgOptimizedImage, NgStyle} from "@angular/common";
 import {TranslocoPipe} from "@jsverse/transloco";
 
 @Component({
-  selector: 'Textinput',
+  selector: 'InputWrapper',
   standalone: true,
   imports: [
-    NgStyle,
     NgIf,
     NgOptimizedImage,
     TranslocoPipe
@@ -14,14 +13,13 @@ import {TranslocoPipe} from "@jsverse/transloco";
   templateUrl: './textinput.component.html',
   styleUrl: './textinput.component.scss'
 })
-export class FloatingLabelComponent implements AfterViewInit {
+export class InputWrapper implements AfterViewInit {
   @Input() label!: string;
-  @Input() password: boolean = false
   type: string = "text"
   showPassword = false
   @ContentChild('input', {static: false}) inputElement!: ElementRef;
   isFocused = false;
-  hasValue = false;
+  hasValue = false  ;
 
   constructor(private renderer: Renderer2) {
   }
@@ -63,14 +61,6 @@ export class FloatingLabelComponent implements AfterViewInit {
       });
 
       this.hasValue = !!nativeInput.value;
-
-      if (this.password) {
-        nativeInput.type = "password"
-      }
-
-      console.log(this.type)
     }
-
   }
-
 }

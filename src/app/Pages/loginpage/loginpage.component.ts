@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { NavigationBar } from "../../Components/Navigation/navigation-bar/navigation-bar.component";
-import { FloatingLabelComponent } from "../../Components/inputs/textinput/textinput.component";
+import { InputWrapper } from "../../Components/inputs/textinput/textinput.component";
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
 import { TranslocoPipe } from "@jsverse/transloco";
 import { AuthService } from "../../Services/auth/auth.service";
@@ -12,7 +12,7 @@ import {NgOptimizedImage} from "@angular/common";
   standalone: true,
   imports: [
     NavigationBar,
-    FloatingLabelComponent,
+    InputWrapper,
     ReactiveFormsModule,
     TranslocoPipe,
     HttpClientModule,

@@ -6,26 +6,28 @@
   align-items: center;
 }
 
-.text-input__label--text {
-  position: absolute;
-  top: 50%;
-  left: calc(1rem - 2px);
-  transform: translateY(-50%);
-  transition: all 0.3s ease;
-  pointer-events: none;
-  background: transparent;
-  padding: 3px;
-}
+.text-input__label {
+  &--text {
+    position: absolute;
+    top: 50%;
+    left: calc(1rem - 2px);
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    background: transparent;
+    padding: 3px;
+  }
 
-.text-input__label--text--floating {
-  background: var(--Background);
-  color: var(--Text);
-  top: 0;
-  font-size: 0.8rem;
-}
+  &--text--floating {
+    background: var(--Background);
+    color: var(--Text);
+    top: 0;
+    font-size: 0.8rem;
+  }
 
-.text-input__label--checkbox {
-  padding-left: 0.5rem;
+  &--checkbox {
+    padding-left: 0.5rem;
+  }
 }
 
 .text-input__show-password {
@@ -52,14 +54,11 @@
     padding: 0.2rem 0;
   }
 
+  &--show {
+    display: flex;
+  }
+
+  &--hide {
+    display: flex !important;
+  }
 }
-
-.text-input__show-password--show {
-  display: flex;
-}
-
-.text-input__show-password--hide {
-  display: flex !important;
-}
-
-

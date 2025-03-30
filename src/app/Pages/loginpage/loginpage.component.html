@@ -9,18 +9,18 @@
       <div class="login">
         <h2>{{ 'LogIn' | transloco }}</h2>
         <form [formGroup]="loginForm" class="login__form">
-          <Textinput [label]="'Email' | transloco" type="text">
+          <InputWrapper [label]="'Email' | transloco" type="text">
             <input #input id="email" type="text" formControlName="email">
-          </Textinput>
+          </InputWrapper>
           <div class="login__password-container">
-            <Textinput [label]="'Password' | transloco" [password]="true" type="password">
+            <InputWrapper [label]="'Password' | transloco" type="password">
               <input #input id="password" type="password" formControlName="password"/>
-            </Textinput>
+            </InputWrapper>
             <a href="" class="login__reset-password">{{ 'ResetPassword' | transloco }}</a>
           </div>
-          <Textinput label="Test" type="checkbox">
-            <input #input type="checkbox">
-          </Textinput>
+          <InputWrapper [label]="'StaySignedIn' | transloco">
+            <input #input type="checkbox" checked="checked">
+          </InputWrapper>
           <div class="login__button-container">
             <button type="button" class="login__login-button" (click)="submitLogin()">{{ 'LogIn' | transloco }}</button>
           </div>

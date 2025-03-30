@@ -9,5 +9,6 @@
   "LogIn": "Einloggen",
   "SignUp": "Konto erstellen",
   "ShowPassword": "Passwort anzeigen",
-  "HidePassword": "Password nicht mehr anzeigen"
+  "HidePassword": "Password nicht mehr anzeigen",
+  "StaySignedIn": "Eingeloggt bleiben"
 }

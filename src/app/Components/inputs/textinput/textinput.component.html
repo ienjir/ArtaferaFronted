@@ -11,7 +11,7 @@
     {{ label }}
   </label>
 
-  <div *ngIf="password" class="text-input__show-password">
+  <div *ngIf="type === 'password'" class="text-input__show-password">
     <button *ngIf="showPassword" (click)="handleShowPassword()" class="text-input__show-password--show">
       <img ngSrc="/assets/svg/Eye__shut.svg" [alt]="'ShowPassword' | transloco " height="19" width="40">
     </button>
