@@ -3,7 +3,7 @@ import {provideRouter} from '@angular/router';
 
 import {routes} from './app.routes';
 import {provideClientHydration} from '@angular/platform-browser';
-import {HTTP_INTERCEPTORS, provideHttpClient} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import {TranslocoHttpLoader} from './transloco-loader';
 import {provideTransloco} from '@jsverse/transloco';
 import {AuthInterceptor} from "./Interceptors/auth.interceptor";
