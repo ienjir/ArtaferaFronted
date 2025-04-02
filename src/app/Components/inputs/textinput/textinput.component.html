@@ -4,23 +4,19 @@
          [class.text-input__label--text--floating]="isFocused || hasValue">
     {{ label }}
   </label>
-
   <ng-content></ng-content>
-
   <!-- Label for checkbox and radio -->
   <label *ngIf="type === 'checkbox' || type == 'radio'" class="text-input__label--checkbox">
     {{ label }}
   </label>
-
   <div *ngIf="type === 'password'" class="text-input__show-password">
-    <button *ngIf="showPassword" (click)="handleShowPassword()" class="text-input__show-password--show">
+    <button type="button" *ngIf="showPassword" (click)="handleShowPassword($event)" class="text-input__show-password--show">
       <img ngSrc="/assets/svg/Eye__shut.svg" [alt]="'ShowPassword' | transloco " height="19" width="40">
     </button>
-    <button *ngIf="!showPassword" (click)="handleShowPassword()" class="text-input__show-password--hide">
+    <button type="button" *ngIf="!showPassword" (click)="handleShowPassword($event)" class="text-input__show-password--hide">
       <img ngSrc="/assets/svg/Eye__open.svg" [alt]="'HidePassword' | transloco " height="25" width="40">
     </button>
   </div>
-
   <label *ngIf="errorMessage" class="text-input__error">
     {{ errorMessage }}
   </label>
