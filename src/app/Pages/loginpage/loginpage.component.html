@@ -9,12 +9,12 @@
       <div class="login">
         <h2>{{ 'LogIn' | transloco }}</h2>
         <form [formGroup]="loginForm" class="login__form">
-          <InputWrapper [label]="'Email' | transloco" type="text">
+          <InputWrapper [label]="'Email' | transloco" type="text" [errorMessage]="emailError">
             <input #input id="email" type="text" formControlName="email">
           </InputWrapper>
           <div class="login__password-container">
-            <InputWrapper [label]="'Password' | transloco" type="password" errorMessage="Error">
-              <input #input id="password" type="password" formControlName="password"/>
+            <InputWrapper [label]="'Password' | transloco" type="password" [errorMessage]="passwordError">
+              <input #input id="password" type="password" formControlName="password" value="user1@example.com">
             </InputWrapper>
             <a href="" class="login__reset-password">{{ 'ResetPassword' | transloco }}</a>
           </div>
@@ -25,6 +25,9 @@
             <button type="button" class="login__login-button" (click)="submitLogin()">{{ 'LogIn' | transloco }}</button>
           </div>
         </form>
+        <div class="login__error">
+          <p class="login__error__text">{{ errorMessage }}</p>
+        </div>
       </div>
       <div class="signup">
         <button class="signup__button" (click)="fetchProtectedData()">{{ 'SignUp' | transloco }}</button>

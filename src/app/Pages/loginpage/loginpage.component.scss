@@ -92,6 +92,20 @@
   }
 }
 
+.login__error {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem
+}
+
+.login__error__text {
+  color: var(--Red);
+  padding: 0;
+  margin: 0;
+  font-size: 1.25rem;
+}
+
 
 .signup {
   width: 100%;

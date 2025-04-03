@@ -1,8 +1,8 @@
-import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, throwError, of } from 'rxjs';
-import { catchError, tap, map } from 'rxjs/operators';
-import { isPlatformBrowser } from '@angular/common';
+import {Injectable, PLATFORM_ID, Inject} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {BehaviorSubject, Observable, throwError, of} from 'rxjs';
+import {catchError, tap, map} from 'rxjs/operators';
+import {isPlatformBrowser} from '@angular/common';
 import {environment} from "../../../environments/environment";
 
 export interface LoginRequest {
@@ -34,8 +34,10 @@ export class AuthService {
 
     if (this.isBrowser) {
       this.getUserInfo().subscribe({
-        next: () => {},
-        error: () => {}
+        next: () => {
+        },
+        error: () => {
+        }
       });
     }
   }
@@ -44,8 +46,8 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-  login(loginRequest: LoginRequest): Observable<void> {
-    return this.http.post<any>(`${this.baseUrl}/auth/login`, loginRequest, { withCredentials: true })
+  login(loginRequest: LoginRequest): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/auth/login`, loginRequest, {withCredentials: true, observe: 'response'})
       .pipe(
         tap(() => {
           this.getUserInfo().subscribe();
@@ -59,7 +61,7 @@ export class AuthService {
       return of(null as any);
     }
 
-    return this.http.get<any>(`${this.baseUrl}/auth/me`, { withCredentials: true })
+    return this.http.get<any>(`${this.baseUrl}/auth/me`, {withCredentials: true})
       .pipe(
         map(response => {
           const user: User = {
@@ -82,7 +84,7 @@ export class AuthService {
     }
 
     const payload = {"offset": 0}
-    return this.http.post<User[]>(`${this.baseUrl}/user/list`, payload, { withCredentials: true })
+    return this.http.post<User[]>(`${this.baseUrl}/user/list`, payload, {withCredentials: true})
       .pipe(
         catchError(this.handleError)
       );
@@ -152,6 +154,11 @@ export class AuthService {
     } else {
       errorMessage = error.error?.error || error.error?.message || errorMessage;
     }
-    return throwError(() => new Error(errorMessage));
+
+    return throwError(() => ({
+      status: error.status,
+      message: errorMessage,
+      error: error.error || {}
+    }));
   }
 }

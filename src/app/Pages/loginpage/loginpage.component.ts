@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { NavigationBar } from "../../Components/Navigation/navigation-bar/navigation-bar.component";
 import { InputWrapper } from "../../Components/inputs/textinput/textinput.component";
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
-import { TranslocoPipe } from "@jsverse/transloco";
+import {TranslocoPipe, TranslocoService} from "@jsverse/transloco";
 import { AuthService, LoginRequest } from "../../Services/auth/auth.service";
 import { NgOptimizedImage } from "@angular/common";
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import passwordEntropy from "fast-password-entropy";
 
 @Component({
   selector: 'LoginPage',
@@ -19,25 +20,46 @@ import { HttpClient } from '@angular/common/http';
     NgOptimizedImage
   ],
   templateUrl: './loginpage.component.html',
-  styleUrl: './loginpage.component.scss'
+  styleUrls: ['./loginpage.component.scss']
 })
+
 export class LoginPage {
   private authService = inject(AuthService);
   private router = inject(Router);
   private http = inject(HttpClient);
+
+  emailError = "";
+  passwordError = "";
+  errorMessage: string = "";
+  loading = false;
+  testApiResult: any = null;
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
 
-  errorMessage: string = '';
-  loading = false;
-  testApiResult: any = null;
+
+  constructor(private translocoService: TranslocoService) {}
 
   submitLogin() {
+    this.emailError = '';
+    this.passwordError = '';
+
     if (this.loginForm.invalid) {
-      console.warn("Invalid form data");
+      if (this.loginForm.controls.email.errors) {
+        if (this.loginForm.controls.email.errors['required']) {
+          this.emailError = this.translocoService.translate("emailRequired");
+        } else if (this.loginForm.controls.email.errors['email']) {
+          this.emailError = this.translocoService.translate("emailFormat");
+        }
+      }
+
+      if (this.loginForm.controls.password.errors) {
+        if (this.loginForm.controls.password.errors['required']) {
+          this.passwordError = this.translocoService.translate("passwordRequired")
+        }
+      }
       return;
     }
 
@@ -59,7 +81,15 @@ export class LoginPage {
       },
       error: err => {
         console.error("Login failed:", err);
-        this.errorMessage = err.message || 'Login failed. Please check your credentials.';
+
+        if (err.status === 404) {
+          this.emailError = this.translocoService.translate("emailNotFound");
+        } else if (err.status === 401) {
+          this.passwordError = this.translocoService.translate("wrongPassword")
+        } else {
+          this.errorMessage = this.translocoService.translate("unkonwError") + err.message
+        }
+
         this.loading = false;
       },
       complete: () => {
