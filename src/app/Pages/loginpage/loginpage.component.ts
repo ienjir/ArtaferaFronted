@@ -7,7 +7,6 @@ import { AuthService, LoginRequest } from "../../Services/auth/auth.service";
 import { NgOptimizedImage } from "@angular/common";
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import passwordEntropy from "fast-password-entropy";
 
 @Component({
   selector: 'LoginPage',
@@ -37,6 +36,7 @@ export class LoginPage {
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
+    rememberMe: new FormControl(true)
   });
 
 
@@ -68,14 +68,13 @@ export class LoginPage {
 
     const loginRequest: LoginRequest = {
       email: this.loginForm.value.email || '',
-      password: this.loginForm.value.password || ''
+      password: this.loginForm.value.password || '',
+      rememberMe: this.loginForm.value.rememberMe || false
     };
 
     this.authService.login(loginRequest).subscribe({
       next: () => {
         console.log("Login successful");
-
-        this.testProtectedEndpoint();
 
         this.router.navigate(['/']);
       },

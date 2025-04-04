@@ -2,13 +2,6 @@
 
 ### The frontent for the <a href="Artafera.ch">Artafera Website</a>
 
-## ToDo
-
-- Reset password
-- Remember me checkboxss
-- Validation for Login
-- Internalisation for everywhere
-
 ## Development
 
 To start the Artafera backend you the following things:

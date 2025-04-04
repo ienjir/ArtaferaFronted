@@ -8,6 +8,7 @@ import {environment} from "../../../environments/environment";
 export interface LoginRequest {
   email: string;
   password: string;
+  rememberMe: boolean;
 }
 
 export interface User {
@@ -47,16 +48,27 @@ export class AuthService {
   }
 
   login(loginRequest: LoginRequest): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/auth/login`, loginRequest, {withCredentials: true, observe: 'response'})
+    return this.http.post<any>(`${this.baseUrl}/auth/login`, loginRequest, { withCredentials: true, observe: 'response' })
       .pipe(
-        tap(() => {
+        tap(response => {
+          console.log('Login response:', response.body); // Debug log to check response
+
+          const accessToken = response.body.access_token
+          const refreshToken = response.body.refresh_token
+          if (loginRequest.rememberMe) {
+            localStorage.setItem('accessToken', accessToken);
+            localStorage.setItem('refreshToken', refreshToken);
+          } else {
+            sessionStorage.setItem('accessToken', accessToken);
+            sessionStorage.setItem('refreshToken', refreshToken);
+          }
           this.getUserInfo().subscribe();
         }),
         catchError(this.handleError)
       );
   }
 
-  getUserInfo(): Observable<User> {
+    getUserInfo(): Observable<User> {
     if (!this.isBrowser) {
       return of(null as any);
     }

@@ -82,10 +82,6 @@ object {
 
 .close {
   cursor: pointer;
-
-  &:focus {
-    background-color: red;
-  }
 }
 
 .sideBar {

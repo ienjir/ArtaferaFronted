@@ -34,12 +34,12 @@
       <button (click)="toggleSidebar()" >
         <img ngSrc="/assets/svg/Burger.svg" alt="Open Sidebar" height="35" width="40">
       </button>
-    </li>
+  </li>
   </ul>
 
   <ul [class.open]="openSidebar" class="sideBar">
     <li>
-      <button (click)="toggleSidebar()" tabindex="1">
+      <button (click)="toggleSidebar()" tabindex="0">
         <img ngSrc="/assets/svg/X.svg" alt="Close Sidebar" class="close" height="40" width="40">
       </button>
     </li>
