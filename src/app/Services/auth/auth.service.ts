@@ -51,7 +51,6 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}/auth/login`, loginRequest, { withCredentials: true, observe: 'response' })
       .pipe(
         tap(response => {
-          console.log('Login response:', response.body); // Debug log to check response
 
           const accessToken = response.body.access_token
           const refreshToken = response.body.refresh_token
