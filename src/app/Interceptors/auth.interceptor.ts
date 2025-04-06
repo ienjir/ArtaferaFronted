@@ -33,15 +33,16 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError(error => {
-        if (error instanceof HttpErrorResponse && error.status === 401) {
-          return this.handle401Error(request, next);
+        if (error instanceof HttpErrorResponse && error.status === 400) {
+          return this.handle400Error(request, next);
+        } else {
+          return throwError(() => error);
         }
-        return throwError(() => error);
       })
     );
   }
 
-  private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
+  private handle400Error(request: HttpRequest<any>, next: HttpHandler) {
     if (!this.isRefreshing) {
       this.isRefreshing = true;
       this.refreshTokenSubject.next(null);
@@ -61,7 +62,7 @@ export class AuthInterceptor implements HttpInterceptor {
     } else {
       return this.refreshTokenSubject.pipe(
         filter(token => token !== null),
-        take(1),
+        take(0),
         switchMap(() => {
           return next.handle(request);
         })

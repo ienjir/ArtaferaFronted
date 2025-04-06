@@ -21,9 +21,9 @@ export interface User {
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = environment.apiUrl; // Update with your backend URL
+  private baseUrl = environment.apiUrl;
   private currentUserSubject = new BehaviorSubject<User | null>(null);
-  public currentUser$ = this.currentUserSubject.asObservable();
+  public currentUser = this.currentUserSubject.asObservable();
   private refreshTokenTimeout: any;
   private isBrowser: boolean;
 
@@ -35,15 +35,14 @@ export class AuthService {
 
     if (this.isBrowser) {
       this.getUserInfo().subscribe({
-        next: () => {
-        },
-        error: () => {
-        }
+        next: () => {},
+        error: () => {}
       });
     }
   }
 
   public get currentUserValue(): User | null {
+    console.log("CurrentUserValue: " + this.currentUserSubject.value?.email || 'No user logged in');
     return this.currentUserSubject.value;
   }
 
@@ -51,9 +50,9 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}/auth/login`, loginRequest, { withCredentials: true, observe: 'response' })
       .pipe(
         tap(response => {
+          const accessToken = response.body.access_token;
+          const refreshToken = response.body.refresh_token;
 
-          const accessToken = response.body.access_token
-          const refreshToken = response.body.refresh_token
           if (loginRequest.rememberMe) {
             localStorage.setItem('accessToken', accessToken);
             localStorage.setItem('refreshToken', refreshToken);
@@ -61,31 +60,36 @@ export class AuthService {
             sessionStorage.setItem('accessToken', accessToken);
             sessionStorage.setItem('refreshToken', refreshToken);
           }
+
           this.getUserInfo().subscribe();
         }),
         catchError(this.handleError)
       );
   }
 
-    getUserInfo(): Observable<User> {
+  getUserInfo(): Observable<User | null> {
     if (!this.isBrowser) {
-      return of(null as any);
+      return of(null);
     }
-
-    return this.http.get<any>(`${this.baseUrl}/auth/me`, {withCredentials: true})
+    return this.http.get<any>(`${this.baseUrl}/auth/me`, { withCredentials: true })
       .pipe(
         map(response => {
           const user: User = {
             id: response.id,
             email: response.email,
-            role: response.role
+            role: response.role,
           };
 
           this.currentUserSubject.next(user);
           this.startRefreshTokenTimer();
+          console.log("Get user Info: " + user.id);
+          console.log("Get user Info 2: " + this.currentUserSubject.value?.email || 'No user logged in');
           return user;
         }),
-        catchError(this.handleError)
+        catchError(error => {
+          this.currentUserSubject.next(null);
+          return throwError(error);
+        })
       );
   }
 
@@ -94,11 +98,9 @@ export class AuthService {
       return of([]);
     }
 
-    const payload = {"offset": 0}
-    return this.http.post<User[]>(`${this.baseUrl}/user/list`, payload, {withCredentials: true})
-      .pipe(
-        catchError(this.handleError)
-      );
+    const payload = { offset: 0 };
+    return this.http.post<User[]>(`${this.baseUrl}/user/list`, payload, { withCredentials: true })
+      .pipe(catchError(this.handleError));
   }
 
   logout(): Observable<any> {
@@ -121,17 +123,20 @@ export class AuthService {
       return of(null);
     }
 
-    return this.http.post<any>(`${this.baseUrl}/auth/refresh`, {}, {
-      withCredentials: true,
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    }).pipe(
-      tap(() => {
-        this.startRefreshTokenTimer();
-      }),
-      catchError(this.handleError)
-    );
+    return this.http.post<any>(`${this.baseUrl}/auth/refresh`, {}, { withCredentials: true, headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
+      .pipe(
+        tap(response => {
+          const accessToken = response.body.access_token;
+          const refreshToken = response.body.refresh_token;
+          localStorage.setItem('accessToken', accessToken);
+          localStorage.setItem('refreshToken', refreshToken);
+          this.startRefreshTokenTimer();
+        }),
+        catchError(error => {
+          this.logout().subscribe();
+          return throwError(error);
+        })
+      );
   }
 
   private startRefreshTokenTimer() {
@@ -166,10 +171,10 @@ export class AuthService {
       errorMessage = error.error?.error || error.error?.message || errorMessage;
     }
 
-    return throwError(() => ({
+    return throwError({
       status: error.status,
       message: errorMessage,
       error: error.error || {}
-    }));
+    });
   }
 }
