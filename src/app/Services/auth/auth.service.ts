@@ -1,7 +1,7 @@
 import {Injectable, PLATFORM_ID, Inject} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject, Observable, throwError, of} from 'rxjs';
-import {catchError, tap, map} from 'rxjs/operators';
+import {BehaviorSubject, Observable, throwError, of, ReplaySubject} from 'rxjs';
+import {catchError, tap, map, first} from 'rxjs/operators';
 import {isPlatformBrowser} from '@angular/common';
 import {environment} from "../../../environments/environment";
 
@@ -23,6 +23,7 @@ export interface User {
 export class AuthService {
   private baseUrl = environment.apiUrl;
   private currentUserSubject = new BehaviorSubject<User | null>(null);
+  private isInitialized = new ReplaySubject<boolean>(1);
   public currentUser = this.currentUserSubject.asObservable();
   private refreshTokenTimeout: any;
   private isBrowser: boolean;
@@ -34,16 +35,36 @@ export class AuthService {
     this.isBrowser = isPlatformBrowser(platformId);
 
     if (this.isBrowser) {
-      this.getUserInfo().subscribe({
-        next: () => {},
-        error: () => {}
-      });
+      // Check if we have a token and try to get user info
+      const accessToken = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
+      if (accessToken) {
+        this.getUserInfo().subscribe({
+          next: (user) => {
+            this.startRefreshTokenTimer();
+            this.isInitialized.next(true);
+          },
+          error: (error) => {
+            // If getting user info fails, clear tokens and user state
+            this.clearTokens();
+            this.currentUserSubject.next(null);
+            this.isInitialized.next(true);
+          }
+        });
+      } else {
+        this.isInitialized.next(true);
+      }
+    } else {
+      this.isInitialized.next(true);
     }
   }
 
   public get currentUserValue(): User | null {
-    console.log("CurrentUserValue: " + this.currentUserSubject.value?.email || 'No user logged in');
-    return this.currentUserSubject.value;
+    const user = this.currentUserSubject.value;
+    return user;
+  }
+
+  public waitForInitialization(): Observable<boolean> {
+    return this.isInitialized.pipe(first());
   }
 
   login(loginRequest: LoginRequest): Observable<any> {
@@ -61,7 +82,13 @@ export class AuthService {
             sessionStorage.setItem('refreshToken', refreshToken);
           }
 
-          this.getUserInfo().subscribe();
+          this.getUserInfo().subscribe({
+            next: (user) => {
+              this.startRefreshTokenTimer();
+            },
+            error: (error) => {
+            }
+          });
         }),
         catchError(this.handleError)
       );
@@ -71,6 +98,13 @@ export class AuthService {
     if (!this.isBrowser) {
       return of(null);
     }
+
+    const accessToken = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
+    if (!accessToken) {
+      this.currentUserSubject.next(null);
+      return of(null);
+    }
+
     return this.http.get<any>(`${this.baseUrl}/auth/me`, { withCredentials: true })
       .pipe(
         map(response => {
@@ -81,13 +115,11 @@ export class AuthService {
           };
 
           this.currentUserSubject.next(user);
-          this.startRefreshTokenTimer();
-          console.log("Get user Info: " + user.id);
-          console.log("Get user Info 2: " + this.currentUserSubject.value?.email || 'No user logged in');
           return user;
         }),
         catchError(error => {
           this.currentUserSubject.next(null);
+          this.clearTokens();
           return throwError(error);
         })
       );
@@ -107,12 +139,7 @@ export class AuthService {
     return new Observable(observer => {
       this.currentUserSubject.next(null);
       this.stopRefreshTokenTimer();
-
-      if (this.isBrowser) {
-        document.cookie = 'access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        document.cookie = 'refresh_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-      }
-
+      this.clearTokens();
       observer.next();
       observer.complete();
     });
@@ -123,20 +150,50 @@ export class AuthService {
       return of(null);
     }
 
-    return this.http.post<any>(`${this.baseUrl}/auth/refresh`, {}, { withCredentials: true, headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
-      .pipe(
-        tap(response => {
-          const accessToken = response.body.access_token;
-          const refreshToken = response.body.refresh_token;
+    const refreshToken = localStorage.getItem('refreshToken') || sessionStorage.getItem('refreshToken');
+    if (!refreshToken) {
+      this.logout().subscribe();
+      return throwError(() => new Error('No refresh token available'));
+    }
+
+    return this.http.post<any>(`${this.baseUrl}/auth/refresh`, {}, {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'X-Refresh-Token': refreshToken
+      })
+    }).pipe(
+      tap(response => {
+        const accessToken = response.body.access_token;
+        const newRefreshToken = response.body.refresh_token;
+
+        // Store tokens in the same storage as before
+        if (localStorage.getItem('accessToken')) {
           localStorage.setItem('accessToken', accessToken);
-          localStorage.setItem('refreshToken', refreshToken);
-          this.startRefreshTokenTimer();
-        }),
-        catchError(error => {
-          this.logout().subscribe();
-          return throwError(error);
-        })
-      );
+          localStorage.setItem('refreshToken', newRefreshToken);
+        } else {
+          sessionStorage.setItem('accessToken', accessToken);
+          sessionStorage.setItem('refreshToken', newRefreshToken);
+        }
+
+        this.startRefreshTokenTimer();
+      }),
+      catchError(error => {
+        this.logout().subscribe();
+        return throwError(error);
+      })
+    );
+  }
+
+  private clearTokens() {
+    if (this.isBrowser) {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      sessionStorage.removeItem('accessToken');
+      sessionStorage.removeItem('refreshToken');
+      document.cookie = 'access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie = 'refresh_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
   }
 
   private startRefreshTokenTimer() {
@@ -144,6 +201,7 @@ export class AuthService {
 
     this.stopRefreshTokenTimer();
 
+    // Refresh token 5 minutes before it expires
     this.refreshTokenTimeout = setTimeout(() => {
       this.refreshToken().subscribe();
     }, 25 * 60 * 1000);
@@ -156,11 +214,13 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return !!this.currentUserValue;
+    const loggedIn = !!this.currentUserValue;
+    return loggedIn;
   }
 
   hasRole(role: string): boolean {
-    return this.currentUserValue?.role === role;
+    const hasRole = this.currentUserValue?.role === role;
+    return hasRole;
   }
 
   private handleError(error: any) {

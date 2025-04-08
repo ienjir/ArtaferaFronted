@@ -19,12 +19,24 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    // Skip adding auth headers for login and refresh endpoints
     if (request.url.includes('/auth/login') || request.url.includes('/auth/refresh')) {
       return next.handle(request);
     }
 
+    // Get the access token from storage
+    let accessToken = '';
+    if (this.isBrowser) {
+      accessToken = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken') || '';
+    }
+
+    // Clone the request and add the auth header
     request = request.clone({
-      withCredentials: true
+      withCredentials: true,
+      setHeaders: {
+        Authorization: `Bearer ${accessToken}`
+      }
     });
 
     if (!this.isBrowser) {
@@ -33,8 +45,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError(error => {
-        if (error instanceof HttpErrorResponse && error.status === 400) {
-          return this.handle400Error(request, next);
+        if (error instanceof HttpErrorResponse && error.status === 401) {
+          return this.handle401Error(request, next);
         } else {
           return throwError(() => error);
         }
@@ -42,7 +54,8 @@ export class AuthInterceptor implements HttpInterceptor {
     );
   }
 
-  private handle400Error(request: HttpRequest<any>, next: HttpHandler) {
+  private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
+
     if (!this.isRefreshing) {
       this.isRefreshing = true;
       this.refreshTokenSubject.next(null);
@@ -51,6 +64,17 @@ export class AuthInterceptor implements HttpInterceptor {
         switchMap(() => {
           this.isRefreshing = false;
           this.refreshTokenSubject.next(true);
+
+          // Get the new access token
+          const newAccessToken = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken') || '';
+
+          // Clone the request with the new token
+          request = request.clone({
+            setHeaders: {
+              Authorization: `Bearer ${newAccessToken}`
+            }
+          });
+
           return next.handle(request);
         }),
         catchError((error) => {
@@ -62,8 +86,18 @@ export class AuthInterceptor implements HttpInterceptor {
     } else {
       return this.refreshTokenSubject.pipe(
         filter(token => token !== null),
-        take(0),
+        take(1),
         switchMap(() => {
+          // Get the new access token
+          const newAccessToken = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken') || '';
+
+          // Clone the request with the new token
+          request = request.clone({
+            setHeaders: {
+              Authorization: `Bearer ${newAccessToken}`
+            }
+          });
+
           return next.handle(request);
         })
       );
