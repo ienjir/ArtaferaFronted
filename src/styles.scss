@@ -1,32 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+$breakpoints: (
+  xs: 480px,
+  sm: 768px,
+  md: 1024px,
+  lg: 1280px,
+  xl: 1440px
+);
 
 :root {
-  --Main: #85A1C5;
-  --Text: #EAEAEA;
+  --Main: #A5BCD5;
+  --Text: rgb(234, 234, 234);
+  --Text80: rgba(234, 234, 234, 60);
+  --Focus: #9747FF;
   --PageBackground: #1A1A1A;
   --Background: #2a2a2a;
   --Accent1: #85A1C5;
   --Accent2: #DC58E7;
   --Accent3: #1F93B4;
+  --Red: #ad0000;
 }
+
 
 body, html {
   background-color: var(--PageBackground);
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-}
-
-p {
-  color: var(--Text);
-  font-family: "Raleway", sans-serif;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  font-family: Raleway sans-serif;
 }
 
 h1 {
@@ -41,8 +42,148 @@ h1 {
 h2 {
   font-family: Raleway, sans-serif;
   color: var(--Main);
-  font-size: 3rem;
+  background: transparent !important;
+  font-size: 2rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+p {
+  color: var(--Text);
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+a {
+  color: var(--Text);
+  font-size: 1rem;
+
+  &:focus-visible {
+    outline: 3px solid var(--Focus)
+  }
+}
+
+label {
+  font-family: Roboto sans-serif;
+  color: var(--Text);
+}
+
+input {
+  padding: 0 0.8125rem;
+  min-height: calc(3rem - 6px);
+  flex-grow: 1;
+  border: 3px solid var(--Main);
+  background-color: transparent;
+  border-radius: 0;
+  width: 100%;
+  font-family: Roboto sans-serif;
+  color: var(--Text);
+  font-size: 1rem;
+  outline: none;
+
+  &:focus-visible {
+    border: 3px solid var(--Focus)
+  }
+}
+
+input[type = "checkbox"] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  flex-grow: 0;
+  position: relative;
+  min-width: calc(2rem - 6px);
+  min-height: calc(2rem - 6px);
+  margin: 0;
+  padding: 0;
+  width: auto;
+  border: 3px solid var(--Main);
+
+  &::before {
+    content: "";
+    width: 0.75rem;  /* Reduced from 1rem */
+    height: 0.75rem; /* Reduced from 1rem */
+    background: transparent;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 15%, 80% 0%, 43% 62%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease-in-out;
+    color: var(--Main);
+  }
+
+  &:checked::before {
+    transform: translate(-50%, -50%) scale(1);
+    background: var(--Main);
+  }
+
+  &:focus-visible {
+    border-color: var(--Focus);
+    &::before {
+      background: var(--Focus);
+    }
+  }
+}
+
+button {
+  padding: 0 0.8125rem;
+  border-radius: 0;
+  min-height: calc(3rem);
+  background-color: transparent;
+  color: var(--Text);
+  outline: 0;
+  border: 3px solid var(--Main);
+  transition: ease 100ms;
+
+  &:focus-visible {
+    border: 3px solid var(--Focus) !important;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+@mixin respond-from($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $min-width: map-get($breakpoints, $breakpoint);
+    @media screen and (min-width: $min-width) {
+      @content;
+    }
+  } @else {
+    @error "Invalid breakpoint: #{$breakpoint}.";
+  }
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+@include respond-from(xs) {
+}
+
+@include respond-from(sm) {
+}
+
+@include respond-from(md) {
+}
+
+@include respond-from(lg) {
+}
+
+@include respond-from(xl) {
 }

@@ -2,5 +2,19 @@
   "Home": "Home",
   "AboutMe": "Über mich",
   "Projects": "Projekte",
-  "Contact": "Kontakt"
+  "Contact": "Kontakt",
+  "Email": "Email",
+  "Password": "Passwort",
+  "ResetPassword": "Passwort zurücksetzen",
+  "LogIn": "Einloggen",
+  "SignUp": "Konto erstellen",
+  "ShowPassword": "Passwort anzeigen",
+  "HidePassword": "Password nicht mehr anzeigen",
+  "StaySignedIn": "Eingeloggt bleiben",
+  "unknownError": "Ein unbekannter Error ist aufgetreten. Versuche überprüfen sie die Logindaten und versuchen sie es erneut. Error: ",
+  "emailRequired": "Email ist ein Pflichtfeld",
+  "emailFormat": "Falsches Email Format",
+  "passwordRequired": "Passwort ist ein Pflichtfeld",
+  "emailNotFound": "Kein account mit dieser Email",
+  "wrongPassword": "Passwort ist falsch"
 }

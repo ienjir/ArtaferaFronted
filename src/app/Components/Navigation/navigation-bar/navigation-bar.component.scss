@@ -1,5 +1,8 @@
-nav {
-  margin: 1rem;
+@use "styles" ;
+
+button {
+  background-color: transparent;
+  border: none;
 }
 
 ul {
@@ -45,10 +48,12 @@ object {
 
 .logoDiv {
   height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .logoImg {
-  height: 100%;
+  height: 80%;
   -o-object-fit: contain;
   object-fit: contain;
   width: auto;
@@ -64,26 +69,42 @@ object {
 
 .BurgerMenuHorizontal {
   display: flex;
+  cursor: pointer;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+.close {
+  cursor: pointer;
 }
 
 .sideBar {
-  display: none;
-  position: fixed;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
   top: 0;
   padding: 1.5rem;
-  right: 0;
-  min-height: 100vh;
+  transform: translateX(100vw);
   z-index: 999;
-  flex-direction: column;
   background: var(--Background);
-  width: 100%;
-  transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
+  width: calc(100vw - 3rem);
+  height: calc(100% - 3rem);
+  overflow-y: hidden;
+  position: absolute;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s;
 }
 
 .sideBar.open {
-  display: flex;
+  visibility: visible;
   transform: translateX(0);
+  right: 0;
+  left: 0;
 }
 
 .verticalLi {
@@ -94,22 +115,16 @@ object {
   margin-top: auto;
 }
 
-@media (min-width: 992px) {
+@include styles.respond-from(md) {
   .BurgerMenuHorizontal {
     display: none;
   }
 
   .horizontalLi {
-    display: flex;
-  }
-
-  .sideBar {
     display: none;
   }
-}
 
-@media (min-width: 576px) {
   .sideBar {
-    width: auto;
+    display: flex;
   }
 }

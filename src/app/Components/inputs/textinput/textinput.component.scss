@@ -1,0 +1,75 @@
+.text-input {
+  position: relative;
+  display: inline-flex;
+  flex-grow: 1;
+  width: 100%;
+  align-items: center;
+}
+
+.text-input__label {
+  &--text {
+    position: absolute;
+    top: 50%;
+    left: calc(1rem - 3px);
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    background: transparent;
+    padding: 3px;
+  }
+
+  &--text--floating {
+    background: var(--Background);
+    color: var(--Text);
+    top: 0;
+    font-size: 0.8rem;
+  }
+
+  &--checkbox {
+    padding-left: 0.5rem;
+  }
+}
+
+.text-input__show-password {
+  position: absolute;
+  right: 3px;
+  padding-right: 2px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+
+  button {
+    border: none;
+    background: var(--Background);
+    display: inline-flex;
+    align-items: center;
+    padding: 3px;
+    min-height: 0;
+    height: calc(100% - 6px);
+    cursor: pointer;
+  }
+
+  img {
+    padding: 0.2rem 0;
+  }
+
+  &--show {
+    display: flex;
+  }
+
+  &--hide {
+    display: flex !important;
+  }
+}
+
+.text-input__error {
+  position: absolute;
+  bottom: -22%;
+  left: calc(1rem - 3px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  background: var(--Background);
+  padding: 3px;
+  color: var(--Red);
+}
