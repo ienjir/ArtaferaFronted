@@ -45,6 +45,17 @@ export class LoginPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.returnURL = params['returnUrl'] ? decodeURIComponent(params['returnUrl']) : '/';
     });
+
+    if (this.authService.isLoggedIn()) {
+      console.log("User logged in")
+      if (this.returnURL != "") {
+        this.router.navigateByUrl(this.returnURL)
+      } else {
+        this.router.navigateByUrl("/")
+      }
+    } else {
+      console.log("User not logged in")
+    }
   }
 
   submitLogin() {
