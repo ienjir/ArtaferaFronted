@@ -4,7 +4,6 @@ import {TranslocoPipe} from "@jsverse/transloco";
 import {NavigationBar} from "../../Components/Navigation/navigation-bar/navigation-bar.component";
 import {ImageCarousel} from "../../Components/Imagery/image-carousel/image-carousel.component";
 import {AuthService} from "../../Services/auth/auth.service";
-import {subscribe} from "node:diagnostics_channel";
 
 @Component({
   selector: 'Homepage',
