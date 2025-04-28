@@ -1,0 +1,49 @@
+@use 'styles' as *;
+
+.maintenance {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: var(--PageBackground);
+
+  &__picture {
+    max-width: 80%;
+    height: auto;
+    margin-bottom: 2rem;
+
+    @include respond-from(md) {
+      max-width: 400px;
+    }
+  }
+
+  &__text {
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+
+      @include respond-from(sm) {
+        font-size: 2.5rem;
+      }
+
+      @include respond-from(md) {
+        font-size: 3rem;
+      }
+    }
+
+    h2 {
+      font-size: 1.25rem;
+
+      @include respond-from(sm) {
+        font-size: 1.5rem;
+      }
+
+      @include respond-from(md) {
+        font-size: 1.75rem;
+      }
+    }
+  }
+}
