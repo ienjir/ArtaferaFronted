@@ -4,4 +4,5 @@ import {UnderMaintananceComponent} from "./Pages/under-maintanance/under-maintan
 
 export const routes: Routes = [
   { path: '', component: UnderMaintananceComponent},
+  { path: '**', pathMatch: 'full', component: UnderMaintananceComponent}
 ];
