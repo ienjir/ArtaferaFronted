@@ -3,7 +3,7 @@
     <div *ngFor="let slide of slides; let i = index"
          class="carousel-item"
          [ngClass]="getSlideClass(i)">
-      <img [src]="slide.image" alt="Carousel Slide">
+      <img [src]="slide.image" [alt]="slide.caption">
     </div>
   </div>
 
