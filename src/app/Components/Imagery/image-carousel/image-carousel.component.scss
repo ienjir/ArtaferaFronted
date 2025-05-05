@@ -1,26 +1,53 @@
 .carousel {
   position: relative;
   width: 100%;
+  height: 100%;
   overflow: hidden;
 
   .carousel-inner {
-    display: flex;
-    transition: transform 0.5s ease;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
   }
 
   .carousel-item {
     flex: 0 0 100%;
-    display: none;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    display: block; /* Always display the items */
+    visibility: hidden; /* Hide by default */
+    transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
 
     img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
     }
 
     &.active {
-      display: block;
+      opacity: 1;
+      z-index: 1;
+      visibility: visible;
+    }
+
+    &.prev-slide {
+      animation: slideOutLeft 0.6s forwards;
+      visibility: visible;
+    }
+
+    &.next-slide {
+      animation: slideOutRight 0.6s forwards;
+      visibility: visible;
+    }
+
+    &.new-active-slide {
+      animation: fadeIn 0.6s forwards;
+      visibility: visible;
     }
   }
 
@@ -33,16 +60,114 @@
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
-    padding: 10px;
+    padding: 10px 15px;
     cursor: pointer;
-    z-index: 1;
+    z-index: 2;
+    border-radius: 50%;
+    transition: all 0.5s ease;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    &:active {
+      transform: translateY(-50%) scale(0.95);
+    }
   }
 
   .prev {
-    left: 0;
+    left: 15px;
   }
 
   .next {
-    right: 0;
+    right: 15px;
+  }
+
+  .caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+  }
+
+  .carousel-item.active .caption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 2;
+
+    .indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &.active {
+        background-color: white;
+        transform: scale(1.2);
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.8);
+      }
+    }
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    transform: translateX(-30%);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    transform: translateX(30%);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(0);
+    visibility: visible;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
   }
 }
