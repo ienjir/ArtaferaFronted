@@ -1,10 +1,10 @@
 <div class="image-carousel">
-  <ImageCarousel></ImageCarousel>
-</div>
-<div class="grid">
-  <div class="col-12">
-    <NavigationBar/>
-    <div style="padding: 5rem">
-    </div>
+  <ImageCarousel [darkened]="true"></ImageCarousel>
+  <div class="image-carousel__welcome">
+    <h1 class="image-carousel__welcome__title">
+      {{ 'welcomeTo' | transloco }}
+    </h1>
+    <div class="image-carousel__welcome__divider"></div>
+    <img class="image-carousel__welcome__logo" priority ngSrc="/assets/images/Logo_Light_Big.png" alt="HomepageLogo" height="687" width="2150">
   </div>
 </div>

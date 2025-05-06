@@ -1,8 +1,9 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {CarouselModule} from 'primeng/carousel';
-import {TranslocoPipe} from "@jsverse/transloco";
+import {TranslocoPipe, TranslocoService} from "@jsverse/transloco";
 import {NavigationBar} from "../../Components/Navigation/navigation-bar/navigation-bar.component";
 import {ImageCarousel} from "../../Components/Imagery/image-carousel/image-carousel.component";
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'Homepage',
@@ -11,10 +12,12 @@ import {ImageCarousel} from "../../Components/Imagery/image-carousel/image-carou
     CarouselModule,
     TranslocoPipe,
     NavigationBar,
-    ImageCarousel
+    ImageCarousel,
+    NgOptimizedImage
   ],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'
 })
 export class Homepage {
+  private translocoService = inject(TranslocoService);
 }

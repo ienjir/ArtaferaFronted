@@ -1,4 +1,41 @@
 .image-carousel {
   height: 100vh;
   width: 100%;
+  position: relative;
+
+  &__welcome {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+
+    &__title {
+      font-weight: 400;
+      color: var(--Text);
+      border-bottom: 2px solid var(--Text);
+      padding: 1rem;
+      margin: 1rem;
+      max-width: 80%;
+      text-align: center;
+    }
+
+    &__divider {
+      border-radius: 100px;
+      height: 2px;
+      background: var(--Text);
+    }
+
+    &__logo {
+      aspect-ratio: 2150 / 687;
+      max-width: 80%;
+      height: auto;
+    }
+  }
 }

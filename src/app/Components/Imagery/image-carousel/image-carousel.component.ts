@@ -36,8 +36,10 @@ export class ImageCarousel implements OnInit, OnDestroy {
     {image: "https://picsum.photos/id/239/1000/1400", caption: "Majestic forest scenery"},
   ];
 
+
   @Input() autoPlay = true;
   @Input() interval = 5000;
+  @Input() darkened = false;
 
   ngOnInit() {
     if (this.autoPlay) {

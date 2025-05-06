@@ -19,9 +19,13 @@
     top: 0;
     left: 0;
     opacity: 0;
-    display: block; /* Always display the items */
-    visibility: hidden; /* Hide by default */
+    display: block;
+    visibility: hidden;
     transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
+
+    &--darkened {
+      filter: brightness(50%);
+    }
 
     img {
       width: 100%;
