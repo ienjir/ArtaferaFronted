@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { NgForOf, NgClass } from "@angular/common";
+import {NgForOf, NgClass, NgIf} from "@angular/common";
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
@@ -7,7 +7,8 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   standalone: true,
   imports: [
     NgForOf,
-    NgClass
+    NgClass,
+    NgIf
   ],
   templateUrl: './image-carousel.component.html',
   styleUrl: './image-carousel.component.scss',
@@ -40,6 +41,7 @@ export class ImageCarousel implements OnInit, OnDestroy {
   @Input() autoPlay = true;
   @Input() interval = 5000;
   @Input() darkened = false;
+  @Input() manualSwap = true;
 
   ngOnInit() {
     if (this.autoPlay) {

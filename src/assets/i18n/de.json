@@ -17,5 +17,6 @@
   "passwordRequired": "Passwort ist ein Pflichtfeld",
   "emailNotFound": "Kein account mit dieser Email",
   "wrongPassword": "Passwort ist falsch",
-  "welcomeTo": "Willkommen bei"
+  "welcomeTo": "Willkommen bei",
+  "scrollDownChevron": "Herunterscrollen chevron"
 }
