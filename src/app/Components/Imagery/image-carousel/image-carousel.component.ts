@@ -32,9 +32,9 @@ export class ImageCarousel implements OnInit, OnDestroy {
   autoPlayInterval: any;
 
   @Input() slides: { image: string, caption: string }[] = [
-    {image: "https://picsum.photos/id/236/1000/1400", caption: "Beautiful mountain landscape"},
-    {image: "https://picsum.photos/id/238/1000/1400", caption: "Serene lake view"},
-    {image: "https://picsum.photos/id/239/1000/1400", caption: "Majestic forest scenery"},
+    {image: "/assets/images/ding-dong3.jpg", caption: "Please change me!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"},
+    {image: "/assets/images/windBlumeWinter.jpg", caption: "Please change me!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"},
+    {image: "/assets/images/schildkröte.jpg", caption: "Please change me!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"},
   ];
 
 

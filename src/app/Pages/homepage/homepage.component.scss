@@ -1,8 +1,14 @@
+@keyframes jump {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(10px); }
+  60%  { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
+
 .image-carousel {
-  height: 100vh;
+  height: 100dvh;
   width: 100%;
   position: relative;
-
 
   &__welcome {
     z-index: 1;
@@ -16,13 +22,12 @@
     flex-direction: column;
     align-items: center;
 
-
     &__title {
       font-size: 2rem;
       font-weight: 400;
       display: inline-flex;
       color: var(--Text);
-      margin: 1rem;
+      margin: 0 1rem 1rem;
       max-width: 80%;
       text-align: center;
     }
@@ -43,17 +48,33 @@
   }
 
   &__scroll-down {
-    width: 100%;
+    width: 30vw;
     justify-content: center;
     position: absolute;
     bottom: 15%;
+    left: 35vw;
     z-index: 1;
     display: flex;
     flex-direction: column;
+    animation: jump 1.5s ease-in-out infinite;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+    border: 0;
+    padding: 0;
 
     &__chevron {
       max-height: 2rem;
       height: auto;
     }
+  }
+}
+
+.homepage {
+  width: 100%;
+
+  &__navbar {
+    max-width: 100%;
+    overflow: hidden;
   }
 }

@@ -1,5 +1,10 @@
 @use "styles" ;
 
+nav {
+  width: 100%;
+  max-width: 100%;
+}
+
 button {
   background-color: transparent;
   border: none;
@@ -85,22 +90,22 @@ object {
 }
 
 .sideBar {
-  visibility: hidden;
-  display: flex;
+  display: none;
   flex-direction: column;
   top: 0;
   padding: 1.5rem;
   transform: translateX(100vw);
   z-index: 999;
   background: var(--Background);
-  width: calc(100vw - 3rem);
+  width: calc(100dvw - 3rem);
   height: calc(100% - 3rem);
   overflow-y: hidden;
-  position: absolute;
+  position: fixed;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s;
 }
 
 .sideBar.open {
+  display: flex;
   visibility: visible;
   transform: translateX(0);
   right: 0;
