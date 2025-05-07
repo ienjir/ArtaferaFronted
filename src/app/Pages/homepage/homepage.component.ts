@@ -20,4 +20,12 @@ import {NgOptimizedImage} from "@angular/common";
 })
 export class Homepage {
   private translocoService = inject(TranslocoService);
+
+  scrollToNavbar() {
+    const element = document.getElementById('NavigationBar');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
 }

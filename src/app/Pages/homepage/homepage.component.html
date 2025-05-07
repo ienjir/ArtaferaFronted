@@ -7,14 +7,14 @@
     <div class="image-carousel__welcome__divider"></div>
     <img class="image-carousel__welcome__logo" priority ngSrc="/assets/images/Logo_Light_Big.png" alt="HomepageLogo" height="687" width="2150">
   </div>
-    <button class="image-carousel__scroll-down">
+    <button class="image-carousel__scroll-down" (click)="scrollToNavbar()">
       <img class="image-carousel__scroll-down__chevron" src="assets/svg/Chevron.svg" [alt]="'scrollDownChevron' | transloco">
       <img class="image-carousel__scroll-down__chevron" src="assets/svg/Chevron.svg" [alt]="'scrollDownChevron' | transloco">
     </button>
 </div>
 <div class="homepage">
   <div class="homepage__navbar">
-    <NavigationBar #Navbar></NavigationBar>
+    <NavigationBar id="NavigationBar"></NavigationBar>
     <div style="width: 100%; height: 100vh"></div>
   </div>
 </div>
