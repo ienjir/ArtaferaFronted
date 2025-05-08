@@ -2,7 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {CarouselModule} from 'primeng/carousel';
 import {TranslocoPipe, TranslocoService} from "@jsverse/transloco";
 import {NavigationBar} from "../../Components/Navigation/navigation-bar/navigation-bar.component";
-import {ImageCarousel} from "../../Components/Imagery/image-carousel/image-carousel.component";
+import {ImageCarousel} from "../../Components/Display/image-carousel/image-carousel.component";
 import {NgOptimizedImage} from "@angular/common";
 
 @Component({
