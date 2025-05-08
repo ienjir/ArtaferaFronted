@@ -4,6 +4,7 @@ import {TranslocoPipe, TranslocoService} from "@jsverse/transloco";
 import {NavigationBar} from "../../Components/Navigation/navigation-bar/navigation-bar.component";
 import {ImageCarousel} from "../../Components/Display/image-carousel/image-carousel.component";
 import {NgOptimizedImage} from "@angular/common";
+import {ArtPreview} from "../../Components/Display/art-preview/art-preview.component";
 
 @Component({
   selector: 'Homepage',
@@ -13,7 +14,8 @@ import {NgOptimizedImage} from "@angular/common";
     TranslocoPipe,
     NavigationBar,
     ImageCarousel,
-    NgOptimizedImage
+    NgOptimizedImage,
+    ArtPreview
   ],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'

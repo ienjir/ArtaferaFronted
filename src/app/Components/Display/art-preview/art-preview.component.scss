@@ -1,0 +1,18 @@
+.art-preview {
+  width: calc(100% - 1rem);
+  background: var(--Background);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  &__picture {
+    max-width: 100%;
+  }
+
+  &__information {
+    &__title {
+      margin: 0;
+    }
+  }
+}
