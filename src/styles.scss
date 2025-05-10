@@ -15,7 +15,7 @@ $breakpoints: (
   --Focus: #9747FF;
   --PageBackground: #1A1A1A;
   --Background: #2a2a2a;
-  --Accent1: #85A1C5;
+  --Accent1: #1F93B4;
   --Accent2: #DC58E7;
   --Accent3: #1F93B4;
   --Red: #ad0000;
@@ -62,6 +62,7 @@ p {
   color: var(--Text);
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
+  margin: 0;
   font-style: normal;
   font-weight: 400;
   line-height: normal;

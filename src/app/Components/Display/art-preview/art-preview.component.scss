@@ -11,8 +11,15 @@
   }
 
   &__information {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
     &__title {
       margin: 0;
+      font-size: 1.2rem;
     }
   }
 }
