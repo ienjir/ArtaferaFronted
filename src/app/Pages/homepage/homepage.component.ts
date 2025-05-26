@@ -5,6 +5,7 @@ import {NavigationBar} from "../../Components/Navigation/navigation-bar/navigati
 import {ImageCarousel} from "../../Components/Display/image-carousel/image-carousel.component";
 import {NgOptimizedImage} from "@angular/common";
 import {ArtPreview} from "../../Components/Display/art-preview/art-preview.component";
+import {Footer} from "../../Components/Navigation/footer/footer.component";
 
 @Component({
   selector: 'Homepage',
@@ -15,7 +16,8 @@ import {ArtPreview} from "../../Components/Display/art-preview/art-preview.compo
     NavigationBar,
     ImageCarousel,
     NgOptimizedImage,
-    ArtPreview
+    ArtPreview,
+    Footer
   ],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'
