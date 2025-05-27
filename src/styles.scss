@@ -74,9 +74,8 @@ a {
   text-decoration: none;
   position: relative;
   display: inline-block;
-  background: linear-gradient(to top, var(--Focus) 50%, var(--Main) 50%);
+  background: linear-gradient(to top, var(--Main) 50%, var(--Focus) 50%) 0 -100%;
   background-size: 100% 200%;
-  background-position: 0 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: background-position 0.4s ease;
@@ -175,6 +174,10 @@ button {
   &:active {
     transform: scale(0.9);
   }
+}
+
+Footer {
+  width: 100%;
 }
 
 @mixin respond-from($breakpoint) {
