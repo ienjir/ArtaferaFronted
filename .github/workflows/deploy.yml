@@ -1,0 +1,59 @@
+name: Deploy Artafera Frontend
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Angular app
+        run: npm run build --prod
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
+
+      - name: Add server to known hosts
+        run: |
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to server
+        run: |
+          # Create backup of current deployment
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
+            if [ -d ${{ secrets.SERVER_PATH }} ]; then
+              sudo cp -r ${{ secrets.SERVER_PATH }} ${{ secrets.SERVER_PATH }}_backup_$(date +%Y%m%d_%H%M%S)
+            fi
+          "
+
+          # Copy new build to server
+          scp -r dist/* ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.SERVER_PATH }}/
+
+          # Set proper permissions
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
+            sudo chown -R www-data:www-data ${{ secrets.SERVER_PATH }}
+            sudo chmod -R 755 ${{ secrets.SERVER_PATH }}
+          "
+
+      - name: Verify deployment
+        run: |
+          echo "Deployment completed successfully!"
+          echo "Your app should be available at: http://${{ secrets.SERVER_HOST }}"
