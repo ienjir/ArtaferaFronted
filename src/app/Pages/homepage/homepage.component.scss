@@ -1,10 +1,18 @@
-@use "styles" ;
+@use "styles";
 
 @keyframes jump {
-  0%   { transform: translateY(0); }
-  30%  { transform: translateY(10px); }
-  60%  { transform: translateY(0); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(10px);
+  }
+  60% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 button {
@@ -30,71 +38,86 @@ button {
     align-items: center;
 
     &__title {
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
       font-weight: 400;
       display: inline-flex;
       color: var(--Text);
-      margin: 0 1rem 1rem;
-      max-width: 80%;
+      margin: 0 0 1.5rem;
+      max-width: 90%;
       text-align: center;
     }
 
     &__divider {
       border-radius: 100px;
       height: 2px;
-      width: 50%;
+      width: min(60%, 200px);
       background: var(--Text);
+      margin-bottom: 1.5rem;
     }
 
     &__logo {
-      margin-top: 1rem;
       aspect-ratio: 2150 / 687;
-      max-width: 80%;
+      max-width: min(80%, 400px);
       height: auto;
     }
   }
 
   &__scroll-down {
-    width: 30vw;
-    cursor: pointer;
+    display: flex;
+    width: 100%;
     justify-content: center;
     position: absolute;
-    bottom: 15%;
-    left: 35vw;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    animation: jump 1.5s ease-in-out infinite;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: both;
-    border: 0;
-    padding: 0;
+    bottom: 10%;
 
-    &__chevron {
-      max-height: 2rem;
-      height: auto;
+    &__button {
+      width: 60px;
+      cursor: pointer;
+      justify-content: center;
+      transform: translateX(-50%);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      animation: jump 2s ease-in-out infinite;
+      border: 0;
+      padding: 0.5rem;
+      background: transparent;
+
+      &__chevron {
+        max-height: 1.5rem;
+        height: auto;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+
+        &:first-child {
+          margin-bottom: -0.25rem;
+        }
+      }
+
+      &:hover &__chevron {
+        opacity: 1;
+      }
     }
   }
 }
 
 .homepage {
-  width: calc(100% - 1rem);
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.5rem;
-  gap: 3.5rem;
+  padding: 0 1rem;
+  gap: clamp(2rem, 5vw, 4rem);
 
   &__navbar {
     width: 100%;
-    margin-top: 0.25rem;
+    margin-top: 0.5rem;
   }
 
   &__section {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
+    width: 100%;
 
     &__header {
       display: flex;
@@ -103,15 +126,16 @@ button {
       align-items: center;
 
       &__title {
-        margin: 0 0 0.5rem;
+        margin: 0 0 1rem;
         text-align: center;
+        font-size: clamp(1.5rem, 3vw, 2rem);
       }
 
       &__divider {
-        height: 2px;
-        margin-top: 0.5rem;
-        width: 25%;
-        background: var(--Main)
+        height: 3px;
+        width: clamp(60px, 15%, 120px);
+        background: var(--Main);
+        border-radius: 2px;
       }
     }
 
@@ -119,31 +143,45 @@ button {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1rem;
+      gap: 2rem;
 
       &__grid {
         display: grid;
-        gap: 1rem;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: clamp(1rem, 3vw, 2rem);
+        width: 100%;
         justify-content: center;
+        justify-items: center;
+        grid-template-columns: 1fr;
+
+        > * {
+          width: 100%;
+          min-width: 0;
+        }
       }
 
       &__about-me-text {
         text-align: center;
+        max-width: 800px;
+        line-height: 1.6;
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
       }
     }
 
     &__about-me {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.5rem;
+      align-items: center;
+      max-width: 800px;
 
       &__text {
         text-align: center;
+        line-height: 1.6;
       }
 
       &__button {
         width: 100%;
+        max-width: 300px;
       }
     }
   }
@@ -151,18 +189,42 @@ button {
 
 @include styles.respond-from(xs) {
   .homepage__section__content__grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    max-width: 600px;
   }
 }
 
 @include styles.respond-from(sm) {
   .homepage__section__content__grid {
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    max-width: 800px;
+  }
+}
+
+@include styles.respond-from(md) {
+  .homepage__section__content__grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    max-width: 1000px;
+  }
+}
+
+@include styles.respond-from(lg) {
+  .homepage__section__content__grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    max-width: 1200px;
   }
 }
 
 @include styles.respond-from(xl) {
   .homepage__section__content__grid {
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    max-width: 1400px;
+  }
+}
+
+@include styles.respond-from(xxl) {
+  .homepage__section__content__grid {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    max-width: 1600px;
   }
 }
