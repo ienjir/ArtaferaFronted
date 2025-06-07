@@ -2,7 +2,7 @@ name: Deploy Artafera Frontend
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, HomePage ]
   pull_request:
     branches: [ main ]
 
