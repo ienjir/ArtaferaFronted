@@ -1,4 +1,5 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, PLATFORM_ID} from '@angular/core';
+import {isPlatformBrowser} from '@angular/common';
 import {CarouselModule} from 'primeng/carousel';
 import {TranslocoPipe, TranslocoService} from "@jsverse/transloco";
 import {NavigationBar} from "../../Components/Navigation/navigation-bar/navigation-bar.component";
@@ -24,12 +25,14 @@ import {Footer} from "../../Components/Navigation/footer/footer.component";
 })
 export class Homepage {
   private translocoService = inject(TranslocoService);
+  private platformId = inject(PLATFORM_ID);
 
   scrollToNavbar() {
-    const element = document.getElementById('NavigationBar');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (isPlatformBrowser(this.platformId)) {
+      const element = document.getElementById('NavigationBar');
+      if (element) {
+        element.scrollIntoView({behavior: 'smooth'});
+      }
     }
   }
-
 }
