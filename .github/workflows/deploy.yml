@@ -40,7 +40,7 @@ jobs:
           # Create backup of current deployment
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
             if [ -d ${{ secrets.SERVER_PATH }} ]; then
-              sudo cp -r ${{ secrets.SERVER_PATH }} ${{ secrets.SERVER_PATH }}_backup_$(date +%Y%m%d_%H%M%S)
+              sudo -n cp -r ${{ secrets.SERVER_PATH }} ${{ secrets.SERVER_PATH }}_backup_$(date +%Y%m%d_%H%M%S)
             fi
           "
 
@@ -49,8 +49,8 @@ jobs:
 
           # Set proper permissions
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
-            sudo chown -R www-data:www-data ${{ secrets.SERVER_PATH }}
-            sudo chmod -R 755 ${{ secrets.SERVER_PATH }}
+            sudo -n chown -R www-data:www-data ${{ secrets.SERVER_PATH }}
+            sudo -n chmod -R 755 ${{ secrets.SERVER_PATH }}
           "
 
       - name: Verify deployment
