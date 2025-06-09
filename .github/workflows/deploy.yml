@@ -35,6 +35,16 @@ jobs:
         run: |
           ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
+      - name: Debug SSH connection
+        run: |
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
+            echo 'Connected as:' \$(whoami)
+            echo 'Groups:' \$(groups)
+            echo 'Testing sudo:'
+            sudo -n whoami || echo 'Sudo failed'
+            sudo -l
+          "
+
       - name: Deploy to server
         run: |
           # Create backup of current deployment
