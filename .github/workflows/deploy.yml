@@ -35,22 +35,12 @@ jobs:
         run: |
           ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Debug SSH connection
-        run: |
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
-            echo 'Connected as:' \$(whoami)
-            echo 'Groups:' \$(groups)
-            echo 'Testing sudo:'
-            sudo -n whoami || echo 'Sudo failed'
-            sudo -l
-          "
-
       - name: Deploy to server
         run: |
           # Create backup of current deployment
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
             if [ -d ${{ secrets.SERVER_PATH }} ]; then
-              sudo -n cp -r ${{ secrets.SERVER_PATH }} ${{ secrets.SERVER_PATH }}_backup_$(date +%Y%m%d_%H%M%S)
+              sudo /bin/cp -r ${{ secrets.SERVER_PATH }} ${{ secrets.SERVER_PATH }}_backup_$(date +%Y%m%d_%H%M%S)
             fi
           "
 
@@ -59,8 +49,8 @@ jobs:
 
           # Set proper permissions
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
-            sudo -n chown -R www-data:www-data ${{ secrets.SERVER_PATH }}
-            sudo -n chmod -R 755 ${{ secrets.SERVER_PATH }}
+            sudo /bin/chown -R www-data:www-data ${{ secrets.SERVER_PATH }}
+            sudo /bin/chmod -R 755 ${{ secrets.SERVER_PATH }}
           "
 
       - name: Verify deployment
