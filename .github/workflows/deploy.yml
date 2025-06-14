@@ -9,12 +9,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Debug SSH setup
-        run: |
-          echo "SSH_AUTH_SOCK: $SSH_AUTH_SOCK"
-          echo "User: ${{ secrets.SERVER_USER }}"
-          echo "Host: ${{ secrets.SERVER_HOST }}"
-
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.7.0
         with:
@@ -24,13 +18,9 @@ jobs:
         run: |
           ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Debug SSH agent
+      - name: Test SSH connection
         run: |
-          ssh-add -l || echo "No keys in SSH agent"
-
-      - name: Test SSH connection with verbose output
-        run: |
-          ssh -v -o ConnectTimeout=10 ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "echo 'SSH connection successful'"
+          ssh -o ConnectTimeout=10 ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "echo 'SSH connection successful'"
 
       - name: Deploy to server
         run: |
