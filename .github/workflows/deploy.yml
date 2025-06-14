@@ -25,8 +25,7 @@ jobs:
       - name: Deploy to server
         run: |
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
-            cd /var/www/artafera/frontend &&
-            ./frontend.sh
+            /var/www/artafera/frontend/frontend.sh
           "
 
       - name: Verify deployment
