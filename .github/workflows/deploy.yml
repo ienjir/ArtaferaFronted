@@ -2,7 +2,7 @@ name: Deploy Artafera Frontend
 
 on:
   push:
-    branches: [ main, HomePage ]
+    branches: [ main ]
 
 jobs:
   deploy:
