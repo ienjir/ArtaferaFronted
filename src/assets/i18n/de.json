@@ -16,5 +16,14 @@
   "emailFormat": "Falsches Email Format",
   "passwordRequired": "Passwort ist ein Pflichtfeld",
   "emailNotFound": "Kein account mit dieser Email",
-  "wrongPassword": "Passwort ist falsch"
+  "wrongPassword": "Passwort ist falsch",
+  "welcomeTo": "Willkommen bei",
+  "scrollDownChevron": "Herunterscrollen chevron",
+  "featuredProducts": "Vorgestellte Produkte",
+  "showMore": "Mehr anzeigen",
+  "aboutMe": "Über mich",
+  "readMore": "Mehr lesen",
+  "privacyPolicy": "Datenschutz",
+  "imprint": "Impressum",
+  "contactNow": "Kontaktieren"
 }

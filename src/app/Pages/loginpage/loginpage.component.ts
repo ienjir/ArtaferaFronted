@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { NavigationBar } from "../../Components/Navigation/navigation-bar/navigation-bar.component";
-import { InputWrapper } from "../../Components/inputs/textinput/textinput.component";
+import { InputWrapper } from "../../Components/Inputs/textinput/textinput.component";
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
 import { TranslocoPipe, TranslocoService } from "@jsverse/transloco";
 import { AuthService, LoginRequest } from "../../Services/auth/auth.service";

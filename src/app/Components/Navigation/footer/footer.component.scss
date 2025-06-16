@@ -1,0 +1,17 @@
+@use "styles" ;
+
+.footer {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 2.5rem;
+  padding: 1.5rem 3rem;
+  flex-wrap: wrap;
+  background: var(--Background)
+}
+
+@include styles.respond-from(xs) {
+  .footer {
+    justify-content: space-between;
+  }
+}

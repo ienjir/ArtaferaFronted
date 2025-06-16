@@ -17,6 +17,5 @@ export class NavigationBar {
 
   toggleSidebar() {
     this.openSidebar = !this.openSidebar;
-    console.log(this.openSidebar)
   }
 }

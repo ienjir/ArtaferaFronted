@@ -1,10 +1,12 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, PLATFORM_ID} from '@angular/core';
+import {isPlatformBrowser} from '@angular/common';
 import {CarouselModule} from 'primeng/carousel';
-import {TranslocoPipe} from "@jsverse/transloco";
+import {TranslocoPipe, TranslocoService} from "@jsverse/transloco";
 import {NavigationBar} from "../../Components/Navigation/navigation-bar/navigation-bar.component";
-import {ImageCarousel} from "../../Components/Imagery/image-carousel/image-carousel.component";
-import {AuthService} from "../../Services/auth/auth.service";
-import {subscribe} from "node:diagnostics_channel";
+import {ImageCarousel} from "../../Components/Display/image-carousel/image-carousel.component";
+import {NgOptimizedImage} from "@angular/common";
+import {ArtPreview} from "../../Components/Display/art-preview/art-preview.component";
+import {Footer} from "../../Components/Navigation/footer/footer.component";
 
 @Component({
   selector: 'Homepage',
@@ -13,22 +15,24 @@ import {subscribe} from "node:diagnostics_channel";
     CarouselModule,
     TranslocoPipe,
     NavigationBar,
-    ImageCarousel
+    ImageCarousel,
+    NgOptimizedImage,
+    ArtPreview,
+    Footer
   ],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'
 })
-export class Homepage implements OnInit {
-  private authService = inject(AuthService);
+export class Homepage {
+  private translocoService = inject(TranslocoService);
+  private platformId = inject(PLATFORM_ID);
 
-  ngOnInit() {
-    this.authService.getUsers().subscribe({
-      next: () => {
-        console.log(this.authService)
-      },
-      error: err => {
-        console.error(err)
+  scrollToNavbar() {
+    if (isPlatformBrowser(this.platformId)) {
+      const element = document.getElementById('NavigationBar');
+      if (element) {
+        element.scrollIntoView({behavior: 'smooth'});
       }
-    })
+    }
   }
 }

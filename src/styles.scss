@@ -5,7 +5,8 @@ $breakpoints: (
   sm: 768px,
   md: 1024px,
   lg: 1280px,
-  xl: 1440px
+  xl: 1440px,
+  xxl: 1920px,
 );
 
 :root {
@@ -15,7 +16,7 @@ $breakpoints: (
   --Focus: #9747FF;
   --PageBackground: #1A1A1A;
   --Background: #2a2a2a;
-  --Accent1: #85A1C5;
+  --Accent1: #1F93B4;
   --Accent2: #DC58E7;
   --Accent3: #1F93B4;
   --Red: #ad0000;
@@ -49,21 +50,43 @@ h2 {
   line-height: normal;
 }
 
+h3 {
+  font-family: Raleway, sans-serif;
+  color: var(--Main);
+  background: transparent !important;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: normal;
+}
+
 p {
   color: var(--Text);
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
+  margin: 0;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
 
 a {
-  color: var(--Text);
+  color: var(--Main);
   font-size: 1rem;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(to top, var(--Main) 50%, var(--Focus) 50%) 0 -100%;
+  background-size: 100% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-position 0.4s ease;
+
+  &:hover {
+    background-position: 0 0;
+  }
 
   &:focus-visible {
-    outline: 3px solid var(--Focus)
+    outline: 3px solid var(--Focus);
   }
 }
 
@@ -152,6 +175,10 @@ button {
   &:active {
     transform: scale(0.9);
   }
+}
+
+Footer {
+  width: 100%;
 }
 
 @mixin respond-from($breakpoint) {
