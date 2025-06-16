@@ -104,6 +104,11 @@ object {
   overflow-y: hidden;
   position: fixed;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s;
+
+  &__button {
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .sideBar.open {
