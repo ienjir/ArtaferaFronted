@@ -1,6 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {NavigationBar} from "../../Components/Navigation/navigation-bar/navigation-bar.component";
 import {TranslocoPipe, TranslocoService} from "@jsverse/transloco";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'NotFoundPage',
@@ -13,4 +14,8 @@ import {TranslocoPipe, TranslocoService} from "@jsverse/transloco";
   styleUrl: './notfoundpage.component.scss'
 })
 export class NotFoundPageComponent {
-}
+  constructor(private router: Router) {}
+
+  redirectTo() {
+    this.router.navigate(['/']);
+  }}
