@@ -25,5 +25,8 @@
   "readMore": "Mehr lesen",
   "privacyPolicy": "Datenschutz",
   "imprint": "Impressum",
-  "contactNow": "Kontaktieren"
+  "contactNow": "Kontaktieren",
+  "pageNotFound": "Seite nicht gefunden",
+  "error": "Error",
+  "backToHome": "Zurück zur Startseite"
 }

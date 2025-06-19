@@ -140,7 +140,6 @@ export class AuthService {
       this.currentUserSubject.next(null);
       this.stopRefreshTokenTimer();
       this.clearTokens();
-      observer.next();
       observer.complete();
     });
   }

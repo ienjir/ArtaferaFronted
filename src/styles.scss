@@ -13,7 +13,7 @@ $breakpoints: (
   --Main: #A5BCD5;
   --Text: rgb(234, 234, 234);
   --Text80: rgba(234, 234, 234, 60);
-  --Focus: #9747FF;
+  --Focus: #4585d3;
   --PageBackground: #1A1A1A;
   --Background: #2a2a2a;
   --Accent1: #1F93B4;
@@ -28,6 +28,7 @@ body, html {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  min-height: 100vh;
   font-family: Raleway sans-serif;
 }
 
@@ -198,6 +199,15 @@ Footer {
   padding: 8px 16px;
   display: flex;
   flex-direction: column;
+  min-height: 100%;
+}
+
+NotFoundPage {
+  min-height: calc(100% - 2rem)
+}
+
+app-root {
+  min-height: 100%;
 }
 
 @include respond-from(xs) {
