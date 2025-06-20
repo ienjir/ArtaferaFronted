@@ -9,7 +9,7 @@
 .text-input__label {
   &--text {
     position: absolute;
-    top: 50%;
+    top: 1.5rem;
     left: calc(1rem - 3px);
     transform: translateY(-50%);
     transition: all 0.3s ease;
@@ -60,6 +60,13 @@
 
   &--hide {
     display: flex !important;
+  }
+}
+
+.text-input {
+  textarea {
+    resize: vertical;
+    font-family: inherit;
   }
 }
 

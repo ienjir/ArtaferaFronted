@@ -1,14 +1,19 @@
 <div class="text-input">
-  <!-- Label for text and password -->
-  <label *ngIf="type === 'text' || type === 'password'" class="text-input__label--text"
+  <!-- Label for text, password, and textarea -->
+  <label *ngIf="type === 'text' || type === 'password' || type === 'textarea'"
+         class="text-input__label--text"
          [class.text-input__label--text--floating]="isFocused || hasValue">
     {{ label }}
   </label>
+
   <ng-content></ng-content>
+
   <!-- Label for checkbox and radio -->
   <label *ngIf="type === 'checkbox' || type == 'radio'" class="text-input__label--checkbox">
     {{ label }}
   </label>
+
+  <!-- Show/hide password button (only for password inputs, not textareas) -->
   <div *ngIf="type === 'password'" class="text-input__show-password">
     <button type="button" *ngIf="showPassword" (click)="handleShowPassword($event)" class="text-input__show-password--show">
       <img ngSrc="/assets/svg/Eye__shut.svg" [alt]="'ShowPassword' | transloco " height="19" width="40">
@@ -17,6 +22,8 @@
       <img ngSrc="/assets/svg/Eye__open.svg" [alt]="'HidePassword' | transloco " height="25" width="40">
     </button>
   </div>
+
+  <!-- Error message -->
   <label *ngIf="errorMessage" class="text-input__error">
     {{ errorMessage }}
   </label>

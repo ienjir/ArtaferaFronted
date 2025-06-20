@@ -19,10 +19,23 @@ export class InputWrapper implements OnInit, AfterViewInit {
 
   type: string = "text";
   showPassword = false;
+
+  // Support both input and textarea
   @ContentChild('input', {static: false}) inputElement!: ElementRef;
+  @ContentChild('textarea', {static: false}) textareaElement!: ElementRef;
 
   isFocused = false;
   hasValue = false;
+
+  // Getter to get the active element (input or textarea)
+  get activeElement(): ElementRef | null {
+    return this.inputElement || this.textareaElement || null;
+  }
+
+  // Getter to check if this is a textarea
+  get isTextarea(): boolean {
+    return !!this.textareaElement;
+  }
 
   constructor(private renderer: Renderer2, private zone: NgZone) {}
 
@@ -31,7 +44,6 @@ export class InputWrapper implements OnInit, AfterViewInit {
   handleShowPassword(event: Event) {
     event.preventDefault();
     event.stopPropagation();
-
     this.showPassword = !this.showPassword;
     if (this.inputElement) {
       if (this.showPassword) {
@@ -43,39 +55,50 @@ export class InputWrapper implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.inputElement) {
-      const nativeInput = this.inputElement.nativeElement;
+    const activeEl = this.activeElement;
 
-      this.type = nativeInput.type;
+    if (activeEl) {
+      const nativeElement = activeEl.nativeElement;
 
-      this.renderer.listen(nativeInput, 'focus', () => {
+      // Set type only for input elements
+      if (!this.isTextarea) {
+        this.type = nativeElement.type;
+      } else {
+        this.type = "textarea";
+      }
+
+      // Focus event listener
+      this.renderer.listen(nativeElement, 'focus', () => {
         this.zone.run(() => {
           this.isFocused = true;
         });
       });
 
-      this.renderer.listen(nativeInput, 'blur', () => {
+      // Blur event listener
+      this.renderer.listen(nativeElement, 'blur', () => {
         this.zone.run(() => {
           this.isFocused = false;
-          this.hasValue = !!nativeInput.value;
-          nativeInput.style.border = "";
+          this.hasValue = !!nativeElement.value;
+          nativeElement.style.border = "";
         });
       });
 
-      this.renderer.listen(nativeInput, 'keydown', (event: KeyboardEvent) => {
+      // Keyboard event listeners
+      this.renderer.listen(nativeElement, 'keydown', (event: KeyboardEvent) => {
         if (event.key === 'Tab') {
-          nativeInput.style.border = "3px solid var(--Focus)";
+          nativeElement.style.border = "3px solid var(--Focus)";
         }
       });
 
-      this.renderer.listen(nativeInput, 'mousedown', () => {
-        nativeInput.style.border = "3px solid var(--Main)";
+      this.renderer.listen(nativeElement, 'mousedown', () => {
+        nativeElement.style.border = "3px solid var(--Main)";
       });
 
+      // Initial value check
       this.zone.runOutsideAngular(() => {
         setTimeout(() => {
           this.zone.run(() => {
-            this.hasValue = !!nativeInput.value;
+            this.hasValue = !!nativeElement.value;
           });
         });
       });
