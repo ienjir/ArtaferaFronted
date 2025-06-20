@@ -22,6 +22,29 @@ $breakpoints: (
   --Red: #ad0000;
 }
 
+// Layout
+
+.layout-container {
+  margin: -2 auto;
+  padding: 1rem;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-content {
+  width: 100%;
+  position: relative;
+  min-height: 6.25rem;
+}
+
+
+// Custom classes
+.customClass {
+
+}
+
+// HTML Elements
 
 body, html {
   background-color: var(--PageBackground);
@@ -201,6 +224,10 @@ Footer {
   width: 100%;
 }
 
+app-root {
+  min-height: 100vh;
+}
+
 @mixin respond-from($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     $min-width: map-get($breakpoints, $breakpoint);
@@ -210,23 +237,6 @@ Footer {
   } @else {
     @error "Invalid breakpoint: #{$breakpoint}.";
   }
-}
-
-.container {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 8px 16px;
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-}
-
-NotFoundPage {
-  min-height: calc(100% - 2rem)
-}
-
-app-root {
-  min-height: 100%;
 }
 
 @include respond-from(xs) {
@@ -243,3 +253,5 @@ app-root {
 
 @include respond-from(xl) {
 }
+
+
