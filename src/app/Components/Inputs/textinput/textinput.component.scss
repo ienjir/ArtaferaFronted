@@ -68,6 +68,10 @@
     resize: vertical;
     font-family: inherit;
   }
+
+  &.no-resize {
+    resize: none;
+  }
 }
 
 .text-input__error {

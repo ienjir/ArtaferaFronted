@@ -13,7 +13,7 @@
             <input #input id="email" type="text" formControlName="email">
           </InputWrapper>
           <div class="login__password-container">
-            <InputWrapper [label]="'Password' | transloco" type="password" [errorMessage]="passwordError">
+            <InputWrapper [label]="'Password' | transloco" type="password" [errorMessage]="passwordError" [resizable]="false">
               <textarea #textarea id="textarea"></textarea>
             </InputWrapper>
           </div>

@@ -16,6 +16,7 @@ import {TranslocoPipe} from "@jsverse/transloco";
 export class InputWrapper implements OnInit, AfterViewInit {
   @Input() label!: string;
   @Input() errorMessage!: string;
+  @Input() resizable: boolean = true; // Controls if textarea can be resized
 
   type: string = "text";
   showPassword = false;
@@ -94,7 +95,11 @@ export class InputWrapper implements OnInit, AfterViewInit {
         nativeElement.style.border = "3px solid var(--Main)";
       });
 
-      // Initial value check
+      // Apply resize styles for textarea
+      if (this.isTextarea) {
+        const resizeValue = this.resizable ? 'vertical' : 'none';
+        this.renderer.setStyle(nativeElement, 'resize', resizeValue);
+      }
       this.zone.runOutsideAngular(() => {
         setTimeout(() => {
           this.zone.run(() => {
