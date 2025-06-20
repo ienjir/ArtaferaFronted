@@ -29,5 +29,7 @@
   "contactNow": "Kontaktieren",
   "pageNotFound": "Seite nicht gefunden",
   "error": "Error",
-  "backToHome": "Zurück zur Startseite"
+  "backToHome": "Zurück zur Startseite",
+  "message": "Nachricht",
+  "send": "Senden"
 }
