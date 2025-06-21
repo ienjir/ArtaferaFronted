@@ -33,11 +33,18 @@ $breakpoints: (
 }
 
 .layout-content {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
   width: 100%;
   position: relative;
-  min-height: 6.25rem;
-}
+  min-height: calc(100vh - 6.25rem);
 
+  & > :not(router-outlet) {
+    display: flex;
+    flex: 1;
+  }
+}
 
 // Custom classes
 .customClass {
@@ -222,10 +229,6 @@ button {
 
 Footer {
   width: 100%;
-}
-
-app-root {
-  min-height: 100vh;
 }
 
 @mixin respond-from($breakpoint) {
