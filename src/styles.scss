@@ -34,22 +34,14 @@ $breakpoints: (
 
 .layout-content {
   display: flex;
-  flex: 1 0 auto;
+  flex: 1;
   flex-direction: column;
   width: 100%;
   position: relative;
   min-height: calc(100vh - 6.25rem);
-
-  & > :not(router-outlet) {
-    display: flex;
-    flex: 1;
-  }
 }
 
 // Custom classes
-.customClass {
-
-}
 
 // HTML Elements
 
@@ -57,8 +49,8 @@ body, html {
   background-color: var(--PageBackground);
   margin: 0;
   padding: 0;
+  height: 100%;
   overflow-x: hidden;
-  min-height: 100vh;
   font-family: Raleway sans-serif;
 }
 
