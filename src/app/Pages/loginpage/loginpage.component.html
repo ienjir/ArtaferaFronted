@@ -1,38 +1,36 @@
 <div class="page">
-  <div class="page__section page--v-centered page__section--m-hidden">
+  <div class="page__section page__section--v-centered page__section--m-hidden">
     <div class="rounded-image">
       <img class="rounded-image__image" ngSrc="/assets/images/ding-dong3.jpg" sizes="" width="1982.6" height="1327.2" alt="Rounded Image" priority>
     </div>
   </div>
 
-  <div class="page__section page--v-centered">
-    <div class="login-signup-container">
-      <div class="card">
-        <h2>{{ 'LogIn' | transloco }}</h2>
-        <form [formGroup]="loginForm" class="login__form">
-          <InputWrapper [label]="'Email' | transloco" type="text" [errorMessage]="emailError">
-            <input #input id="email" type="text" formControlName="email">
+  <div class="page__section page--h-centered page__section--v-centered">
+    <div class="card">
+      <h2>{{ 'LogIn' | transloco }}</h2>
+      <form [formGroup]="loginForm" class="login__form">
+        <InputWrapper [label]="'Email' | transloco" type="text" [errorMessage]="emailError">
+          <input #input id="email" type="text" formControlName="email">
+        </InputWrapper>
+        <div class="login__password-container">
+          <InputWrapper [label]="'Password' | transloco" type="password" [errorMessage]="passwordError">
+            <input #input id="password" type="password" formControlName="password" value="user1@example.com">
           </InputWrapper>
-          <div class="login__password-container">
-            <InputWrapper [label]="'Password' | transloco" type="password" [errorMessage]="passwordError">
-              <input #input id="password" type="password" formControlName="password" value="user1@example.com">
-            </InputWrapper>
-            <a href="" class="login__reset-password">{{ 'ResetPassword' | transloco }}</a>
-          </div>
-          <InputWrapper [label]="'StaySignedIn' | transloco">
-            <input #input type="checkbox" formControlName="rememberMe">
-          </InputWrapper>
-          <div class="login__button-container">
-            <button type="button" class="login__login-button" (click)="submitLogin()">{{ 'LogIn' | transloco }}</button>
-          </div>
-        </form>
-        <div class="login__error">
-          <p class="login__error__text">{{ errorMessage }}</p>
+          <a href="" class="login__reset-password">{{ 'ResetPassword' | transloco }}</a>
         </div>
+        <InputWrapper [label]="'StaySignedIn' | transloco">
+          <input #input type="checkbox" formControlName="rememberMe">
+        </InputWrapper>
+        <div class="login__button-container">
+          <button type="button" class="login__login-button" (click)="submitLogin()">{{ 'LogIn' | transloco }}</button>
+        </div>
+      </form>
+      <div class="login__error">
+        <p class="login__error__text">{{ errorMessage }}</p>
       </div>
-      <div class="signup">
-        <button class="signup__button">{{ 'SignUp' | transloco }}</button>
-      </div>
+    </div>
+    <div class="signup">
+      <button class="signup__button">{{ 'SignUp' | transloco }}</button>
     </div>
   </div>
 </div>

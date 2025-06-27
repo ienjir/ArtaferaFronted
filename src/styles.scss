@@ -64,6 +64,7 @@ $breakpoints: (
 
   &__section {
     flex: 1 0;
+    position: relative;
 
     &--m-hidden {
       display: none !important;
@@ -72,18 +73,22 @@ $breakpoints: (
         display: flex !important;
       }
     }
-  }
 
-  &--v-centered {
-    display: flex;
-    align-items: center;
+    &--v-centered {
+      display: flex;
+      align-items: center;
 
-    @include respond-from(md) {
-      flex-direction: row;
+      @include respond-from(md) {
+        flex-direction: row;
+      }
     }
   }
-}
 
+  &--h-centered {
+    display: flex;
+    justify-content: center;
+  }
+}
 
 // Custom classes
 .rounded-image {
@@ -326,4 +331,3 @@ button {
 Footer {
   width: 100%;
 }
-

@@ -1,27 +1,26 @@
-<div class="container">
-  <NavigationBar class="navigation"></NavigationBar>
-  <div class="content">
+<div class="page">
+  <div class="page__section page--v-centered page__section--m-hidden">
     <div class="rounded-image">
       <img class="rounded-image__image" ngSrc="/assets/images/ding-dong3.jpg" sizes="" width="1982.6" height="1327.2" alt="Rounded Image" priority>
     </div>
+  </div>
 
-    <div class="contact-container">
-      <div class="contact-container__contact">
-        <h2>{{ 'contact' | transloco }}</h2>
-        <form [formGroup]="contactForm" class="contact-container__contact__form">
-          <InputWrapper [label]="'Email' | transloco" type="text" [errorMessage]="emailError">
-            <input #input id="email" type="text" formControlName="email">
+  <div class="page__section page--v-centered">
+    <div class="card">
+      <h2>{{ 'contact' | transloco }}</h2>
+      <form [formGroup]="contactForm" class="contact-container__contact__form">
+        <InputWrapper [label]="'Email' | transloco" type="text" [errorMessage]="emailError">
+          <input #input id="email" type="text" formControlName="email">
+        </InputWrapper>
+        <div class="login__password-container">
+          <InputWrapper [label]="'message' | transloco" type="password" [errorMessage]="passwordError" [resizable]="false">
+            <textarea #textarea id="textarea"></textarea>
           </InputWrapper>
-          <div class="login__password-container">
-            <InputWrapper [label]="'message' | transloco" type="password" [errorMessage]="passwordError" [resizable]="false">
-              <textarea #textarea id="textarea"></textarea>
-            </InputWrapper>
-          </div>
-          <div class="contact-container__contact__button-container">
-            <button type="button" class="login__login-button" (click)="submitLogin()">{{ 'send' | transloco }}</button>
-          </div>
-        </form>
-      </div>
+        </div>
+        <div class="contact-container__contact__button-container">
+          <button type="button" class="login__login-button" (click)="submitLogin()">{{ 'send' | transloco }}</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
