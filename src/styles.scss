@@ -84,6 +84,8 @@ $breakpoints: (
   }
 }
 
+
+// Custom classes
 .rounded-image {
   position: relative;
   left: -1rem;
@@ -94,7 +96,7 @@ $breakpoints: (
   max-width: 100%;
 
   @include respond-from(xs) {
-    min-height: 40vh;
+    min-height: 60vh;
   }
 
   @include respond-from(sm) {
@@ -121,13 +123,31 @@ $breakpoints: (
 
   @include respond-from(md) {
     height: auto;
+    min-height: 50vh;
     width: 100%;
   }
+
+  @include respond-from(xl) {
+    min-height: 60vh;
+  }
 }
-// Custom classes
+
+.card {
+  display: flex;
+  inset: 0;
+  width: calc(100% - 3rem);
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: start;
+  padding: 1.5rem 1.5rem 3rem;
+  background: var(--Background);
+
+  @include respond-from(xs) {
+    width: 70%;
+  }
+}
 
 // HTML Elements
-
 body, html {
   background-color: var(--PageBackground);
   margin: 0;

@@ -112,7 +112,7 @@
 }
 
 .signup__button {
-  width: 50%;
+  width: 100%;
   align-items: center;
   justify-content: center;
   flex-grow: 0;
@@ -127,25 +127,4 @@
     width: 70%;
   }
 
-  .signup__button {
-    width: 100%;
-  }
 }
-
-@include respond-from(sm) {
-}
-
-@include respond-from(md) {
-  .rounded-image {
-    display: flex;
-  }
-}
-
-@include respond-from(lg) {
-  .rounded-image {
-    min-height: 70vh;
-  }
-}
-
-
-
