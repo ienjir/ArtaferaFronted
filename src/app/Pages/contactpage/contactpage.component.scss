@@ -21,7 +21,6 @@
 
     &__form {
       display: flex;
-      flex-grow: 1;
       flex-direction: column;
       gap: 1rem;
       width: 100%
@@ -58,18 +57,3 @@
 
 @include respond-from(sm) {
 }
-
-@include respond-from(md) {
-  .rounded-image {
-    display: flex;
-  }
-}
-
-@include respond-from(lg) {
-  .rounded-image {
-    min-height: 70vh;
-  }
-}
-
-
-
