@@ -6,8 +6,16 @@ import {NotFoundPageComponent} from "./Pages/notfoundpage/notfoundpage.component
 import {ContactPageComponent} from "./Pages/contactpage/contactpage.component";
 import {DefaultLayoutComponent} from "./layouts/defaultLayout/defaultlayout.component";
 import {AboutMePageComponent} from "./Pages/aboutmepage/aboutmepage.component";
+import {HomelayoutComponent} from "./layouts/homelayout/homelayout.component";
 
 export const routes: Routes = [
+    {
+      path: '',
+      component: HomelayoutComponent,
+      children:  [
+        {path: '', component: Homepage}
+      ]
+    },
     {
       path: '',
       component: DefaultLayoutComponent,
@@ -17,15 +25,6 @@ export const routes: Routes = [
         {path: 'übermich', component: AboutMePageComponent},
         {path: '**', component: NotFoundPageComponent},
       ]
-    },
-    {
-      path: '', component:
-      Homepage
-    },
-    {
-      path: 'home', redirectTo:
-        '', pathMatch:
-        'full'
     },
   ]
 ;
