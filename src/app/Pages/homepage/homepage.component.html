@@ -1,31 +1,7 @@
-<div class="image-carousel">
-  <ImageCarousel [darkened]="true" [manualSwap]="false"></ImageCarousel>
-  <div class="image-carousel__welcome">
-    <h1 class="image-carousel__welcome__title">
-      {{ 'welcomeTo' | transloco }}
-    </h1>
-    <div class="image-carousel__welcome__divider"></div>
-    <img class="image-carousel__welcome__logo" priority ngSrc="/assets/images/Logo_Light_Big.png" alt="HomepageLogo" height="687" width="2150">
-  </div>
-  <div class="image-carousel__scroll-down">
-    <button class="image-carousel__scroll-down__button" (click)="scrollToNavbar()">
-      <img class="image-carousel__scroll-down__button__chevron" src="assets/svg/Chevron.svg" [alt]="'scrollDownChevron' | transloco">
-      <img class="image-carousel__scroll-down__button__chevron" src="assets/svg/Chevron.svg" [alt]="'scrollDownChevron' | transloco">
-    </button>
-  </div>
-</div>
-<div class="homepage">
-  <div class="homepage__navbar">
-    <NavigationBar id="NavigationBar"></NavigationBar>
-  </div>
-
-  <div class="homepage__section">
-    <div class="homepage__section__header">
-      <h2 class="homepage__section__header__title">{{ 'featuredProducts' | transloco }}</h2>
-      <div class="homepage__section__header__divider"></div >
-    </div>
-    <div class="homepage__section__content">
-      <div class="homepage__section__content__grid">
+<div class="page">
+  <div class="page__section">
+    <Section-Component [centered]="true" titleKey="featuredProducts">
+      <div class="homepage__grid">
         <div>
           <ArtPreview pictureTitle="This is a title" pictureAlt="This is a alt" pictureLink="/assets/images/ding-dong3.jpg" pictureLabel="Ding-Dong"></ArtPreview>
         </div>
@@ -36,33 +12,18 @@
           <ArtPreview pictureTitle="This is a title" pictureAlt="This is a alt" pictureLink="/assets/images/ding-dong3.jpg" pictureLabel="Ding-Dong"></ArtPreview>
         </div>
       </div>
-      <button>{{ 'showMore' | transloco }}</button>
-    </div>
-  </div>
+      <button (click)="redirectTo('/art')">{{ 'showMore' | transloco }}</button>
+    </Section-Component>
 
-  <div class="homepage__section">
-    <div class="homepage__section__header">
-      <h2 class="homepage__section__header__title">{{ 'aboutMe' | transloco }}</h2>
-      <div class="homepage__section__header__divider"></div>
-    </div>
-    <div class="homepage__section__content">
-      <p class="homepage__section__content__about-me-text">Ich bin Heiko Mach, Projektleiter im Bereich Sanitär- und Heizungstechnik und lebe seit 2001 in der Schweiz. Neben meiner beruflichen Tätigkeit schlägt mein Herz für die Kunst: In meiner Freizeit kreiere ich leidenschaftlich einzigartige Eisenkunstwerke unter dem Namen ArtaFera,
-        angetrieben von
-        Experimentierfreude und Kreativität.</p>
-      <button class="homepage__about-me__button">{{ 'readMore' | transloco }}</button>
-    </div>
-  </div>
+    <Section-Component [centered]="true" titleKey="aboutMe">
+      <p class="homepage__text">Ich bin Heiko Mach, Projektleiter im Bereich Sanitär- und Heizungstechnik und lebe seit 2001 in der Schweiz. Neben meiner beruflichen Tätigkeit schlägt mein Herz für die Kunst: In meiner Freizeit kreiere ich leidenschaftlich einzigartige Eisenkunstwerke unter dem Namen ArtaFera,
+        angetrieben von Experimentierfreude und Kreativität.</p>
+      <button (click)="redirectTo('/uebermich')">{{ 'readMore' | transloco }}</button>
+    </Section-Component>
 
-  <div class="homepage__section">
-    <div class="homepage__section__header">
-      <h2 class="homepage__section__header__title">{{ 'Contact' | transloco }}</h2>
-      <div class="homepage__section__header__divider"></div>
-    </div>
-    <div class="homepage__section__content">
-      <p class="homepage__section__content__about-me-text">Ich freue uns darauf, mit Ihnen in Verbindung zu treten und Ihre Fragen zu beantworten. Kontaktieren Sie mich jederzeit für Anfragen,  Kooperationen oder weitere Informationen über die einzigartigen  Kunstwerke von ArtaFera.</p>
-      <button class="homepage__about-me__button">{{ 'contactNow' | transloco }}</button>
-    </div>
+    <Section-Component [centered]="true" titleKey="Contact">
+      <p class="homepage__text">Ich freue uns darauf, mit Ihnen in Verbindung zu treten und Ihre Fragen zu beantworten. Kontaktieren Sie mich jederzeit für Anfragen, Kooperationen oder weitere Informationen über die einzigartigen Kunstwerke von ArtaFera.</p>
+      <button (click)="redirectTo('/kontakt')">{{ 'contactNow' | transloco }}</button>
+    </Section-Component>
   </div>
-
-  <Footer class="homepage__section"></Footer>
 </div>

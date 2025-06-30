@@ -7,6 +7,8 @@ import {ImageCarousel} from "../../Components/Display/image-carousel/image-carou
 import {NgOptimizedImage} from "@angular/common";
 import {ArtPreview} from "../../Components/Display/art-preview/art-preview.component";
 import {Footer} from "../../Components/Navigation/footer/footer.component";
+import {SectionComponent} from "../../Components/Display/section/section.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'Homepage',
@@ -18,21 +20,18 @@ import {Footer} from "../../Components/Navigation/footer/footer.component";
     ImageCarousel,
     NgOptimizedImage,
     ArtPreview,
-    Footer
+    Footer,
+    SectionComponent
   ],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'
 })
 export class Homepage {
-  private translocoService = inject(TranslocoService);
   private platformId = inject(PLATFORM_ID);
+  constructor(private router: Router) {
+  }
 
-  scrollToNavbar() {
-    if (isPlatformBrowser(this.platformId)) {
-      const element = document.getElementById('NavigationBar');
-      if (element) {
-        element.scrollIntoView({behavior: 'smooth'});
-      }
-    }
+  redirectTo(route: string) {
+    this.router.navigate([route]);
   }
 }

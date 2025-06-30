@@ -14,8 +14,10 @@ import {Router} from "@angular/router";
   styleUrl: './notfoundpage.component.scss'
 })
 export class NotFoundPageComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+  }
 
   redirectTo() {
     this.router.navigate(['/']);
-  }}
+  }
+}
