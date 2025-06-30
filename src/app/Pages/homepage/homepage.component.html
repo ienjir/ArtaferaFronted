@@ -12,18 +12,18 @@
           <ArtPreview pictureTitle="This is a title" pictureAlt="This is a alt" pictureLink="/assets/images/ding-dong3.jpg" pictureLabel="Ding-Dong"></ArtPreview>
         </div>
       </div>
-      <button>{{ 'showMore' | transloco }}</button>
+      <button (click)="redirectTo('/art')">{{ 'showMore' | transloco }}</button>
     </Section-Component>
 
     <Section-Component [centered]="true" titleKey="aboutMe">
       <p class="homepage__text">Ich bin Heiko Mach, Projektleiter im Bereich Sanitär- und Heizungstechnik und lebe seit 2001 in der Schweiz. Neben meiner beruflichen Tätigkeit schlägt mein Herz für die Kunst: In meiner Freizeit kreiere ich leidenschaftlich einzigartige Eisenkunstwerke unter dem Namen ArtaFera,
         angetrieben von Experimentierfreude und Kreativität.</p>
-      <button class="homepage__about-me__button">{{ 'readMore' | transloco }}</button>
+      <button (click)="redirectTo('/uebermich')">{{ 'readMore' | transloco }}</button>
     </Section-Component>
 
     <Section-Component [centered]="true" titleKey="Contact">
       <p class="homepage__text">Ich freue uns darauf, mit Ihnen in Verbindung zu treten und Ihre Fragen zu beantworten. Kontaktieren Sie mich jederzeit für Anfragen, Kooperationen oder weitere Informationen über die einzigartigen Kunstwerke von ArtaFera.</p>
-      <button class="homepage__about-me__button">{{ 'contactNow' | transloco }}</button>
+      <button (click)="redirectTo('/kontakt')">{{ 'contactNow' | transloco }}</button>
     </Section-Component>
   </div>
 </div>

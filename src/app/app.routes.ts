@@ -22,7 +22,7 @@ export const routes: Routes = [
       children: [
         {path: 'login', component: LoginPage},
         {path: 'kontakt', component: ContactPageComponent},
-        {path: 'übermich', component: AboutMePageComponent},
+        {path: 'uebermich', component: AboutMePageComponent},
         {path: '**', component: NotFoundPageComponent},
       ]
     },
