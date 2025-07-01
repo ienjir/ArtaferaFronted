@@ -7,6 +7,7 @@ import {ContactPageComponent} from "./Pages/contactpage/contactpage.component";
 import {DefaultLayoutComponent} from "./layouts/defaultLayout/defaultlayout.component";
 import {AboutMePageComponent} from "./Pages/aboutmepage/aboutmepage.component";
 import {HomelayoutComponent} from "./layouts/homelayout/homelayout.component";
+import {ArtDisplayComponent} from "./Pages/artdisplay/artdisplay.component";
 
 export const routes: Routes = [
     {
@@ -23,6 +24,7 @@ export const routes: Routes = [
         {path: 'login', component: LoginPage},
         {path: 'kontakt', component: ContactPageComponent},
         {path: 'uebermich', component: AboutMePageComponent},
+        {path: 'kunst', component: ArtDisplayComponent},
         {path: '**', component: NotFoundPageComponent},
       ]
     },
