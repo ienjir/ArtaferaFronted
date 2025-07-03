@@ -1,0 +1,34 @@
+@use 'styles' as *;
+
+.artDisplay__grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+
+  @include respond-from(sm) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  @include respond-from(md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @include respond-from(lg) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  @include respond-from(xl) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  @include respond-from(xxl) {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+    max-width: 1800px;
+    margin: 0 auto;
+  }
+}

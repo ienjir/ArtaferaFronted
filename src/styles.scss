@@ -36,10 +36,14 @@ $breakpoints: (
 // Layout
 .layout-container {
   margin: -2 auto;
-  padding: 1rem;
+  padding: 0.5rem;
   gap: 1rem;
   display: flex;
   flex-direction: column;
+
+  @include respond-from(xs) {
+    padding: 1rem;
+  }
 }
 
 .layout-content {
@@ -204,6 +208,7 @@ $breakpoints: (
     }
   }
 }
+
 // HTML Elements
 body, html {
   background-color: var(--PageBackground);

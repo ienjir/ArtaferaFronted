@@ -11,9 +11,8 @@ import {Label} from "../label/label.component";
   styleUrl: './art-preview.component.scss'
 })
 export class ArtPreview {
-  @Input() pictureLink: string = ""
-  @Input() pictureAlt: string = ""
-  @Input() pictureTitle: string = ""
-  @Input() pictureLabel: string = ""
-
+  @Input({required: true}) pictureLink: string = ""
+  @Input({required: true}) pictureAlt: string = ""
+  @Input({required: true}) pictureTitle: string = ""
+  @Input({required: true}) pictureLabel: string = ""
 }

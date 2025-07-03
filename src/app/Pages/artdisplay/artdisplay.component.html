@@ -1,1 +1,13 @@
-<p>artdisplay works!</p>
+<div class="page">
+  <div class="page__section">
+    <div class="artDisplay__grid">
+      <ArtPreview
+        *ngFor="let item of fakedata"
+        [pictureTitle]="item.title"
+        [pictureLink]="item.pictureUrl"
+        [pictureAlt]="item.pictureAlt"
+        [pictureLabel]="item.label"
+      ></ArtPreview>
+    </div>
+  </div>
+</div>
