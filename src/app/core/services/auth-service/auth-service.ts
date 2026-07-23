@@ -1,7 +1,7 @@
 import {isPlatformBrowser} from '@angular/common';
 import {inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {environment} from '@environments/environment.development';
+import {environment} from '@environments/environment';
 import {catchError, map, Observable, of, tap, throwError} from 'rxjs';
 import {JwtPayload, LoginResponse, RegisterRequest, RegisterResponse, TokenPair} from '@interfaces/auth.model';
 
