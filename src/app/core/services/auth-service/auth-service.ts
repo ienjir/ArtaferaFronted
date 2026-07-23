@@ -3,7 +3,7 @@ import {inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '@environments/environment.development';
 import {catchError, map, Observable, of, tap, throwError} from 'rxjs';
-import {JwtPayload, LoginResponse, TokenPair} from '@interfaces/auth.model';
+import {JwtPayload, LoginResponse, RegisterRequest, RegisterResponse, TokenPair} from '@interfaces/auth.model';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -18,6 +18,15 @@ export class AuthService {
   login(email: string, password: string): Observable<TokenPair> {
     return this.http
       .post<{data: LoginResponse}>(`${this.baseUrl}/auth/login`, {email, password})
+      .pipe(
+        map((response) => response.data.token),
+        tap((tokenPair) => this.storeTokens(tokenPair))
+      );
+  }
+
+  register(payload: RegisterRequest): Observable<TokenPair> {
+    return this.http
+      .post<{data: RegisterResponse}>(`${this.baseUrl}/auth/register`, payload)
       .pipe(
         map((response) => response.data.token),
         tap((tokenPair) => this.storeTokens(tokenPair))
