@@ -7,6 +7,17 @@ export type LoginResponse = {
   token: TokenPair;
 };
 
+export type RegisterRequest = {
+  firstname: string;
+  lastname: string;
+  email: string;
+  password: string;
+};
+
+export type RegisterResponse = {
+  token: TokenPair;
+};
+
 export type JwtPayload = {
   email?: string;
   id?: number;

@@ -1,20 +1,42 @@
 <div class="page">
   <div class="page__section page__section--v-centered">
     <div class="artafera-card login">
-      <h2>{{ 'logIn' | transloco }}</h2>
-      <form [formGroup]="loginForm" class="login__form" (ngSubmit)="submitLogin()">
+      <h2>{{ (mode() === 'signup' ? 'signUp' : 'logIn') | transloco }}</h2>
+      <form [formGroup]="authForm" class="login__form" (ngSubmit)="submit()">
+        @if (mode() === 'signup') {
+          <InputWrapper [label]="'firstname' | transloco" type="text" [errorMessage]="firstnameError">
+            <input #input id="login-firstname" type="text" formControlName="firstname">
+          </InputWrapper>
+          <InputWrapper [label]="'lastname' | transloco" type="text" [errorMessage]="lastnameError">
+            <input #input id="login-lastname" type="text" formControlName="lastname">
+          </InputWrapper>
+        }
         <InputWrapper [label]="'email' | transloco" type="text" [errorMessage]="emailError">
           <input #input id="login-email" type="text" formControlName="email">
         </InputWrapper>
         <InputWrapper [label]="'password' | transloco" type="password" [errorMessage]="passwordError">
           <input #input id="login-password" type="password" formControlName="password">
         </InputWrapper>
+        @if (mode() === 'signup') {
+          <InputWrapper [label]="'confirmPassword' | transloco" type="password" [errorMessage]="confirmPasswordError">
+            <input #input id="login-confirm-password" type="password" formControlName="confirmPassword">
+          </InputWrapper>
+        }
         <div class="login__actions">
-          <button type="submit" [disabled]="loginForm.invalid || isSubmitting()">
-            {{ 'logIn' | transloco }}
+          <button type="submit" [disabled]="isSubmitting()">
+            {{ (mode() === 'signup' ? 'signUp' : 'logIn') | transloco }}
           </button>
         </div>
       </form>
+      <div class="login__switch">
+        @if (mode() === 'signup') {
+          <span>{{ 'alreadyHaveAccount' | transloco }}</span>
+          <button type="button" class="login__switch-btn" (click)="toggleMode()">{{ 'logIn' | transloco }}</button>
+        } @else {
+          <span>{{ 'needAccount' | transloco }}</span>
+          <button type="button" class="login__switch-btn" (click)="toggleMode()">{{ 'signUp' | transloco }}</button>
+        }
+      </div>
     </div>
   </div>
 </div>
